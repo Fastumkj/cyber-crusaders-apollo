@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Cyber-Crusaders/static/css/main.bb8d536e.css",
-    "main.js": "/Cyber-Crusaders/static/js/main.313d4ca2.js",
+    "main.js": "/Cyber-Crusaders/static/js/main.c127b214.js",
     "static/media/gifBackground1.gif": "/Cyber-Crusaders/static/media/gifBackground1.d24b3f3921048a2785db.gif",
     "static/media/profilebackground.jpg": "/Cyber-Crusaders/static/media/profilebackground.7f932a294ebaf08163e2.jpg",
     "static/media/gifBackground.gif": "/Cyber-Crusaders/static/media/gifBackground.00ff93f163818a7d3821.gif",
@@ -10,10 +10,10 @@
     "static/media/joystick.jpg": "/Cyber-Crusaders/static/media/joystick.3bfbc1f7b4d7eee17e14.jpg",
     "index.html": "/Cyber-Crusaders/index.html",
     "main.bb8d536e.css.map": "/Cyber-Crusaders/static/css/main.bb8d536e.css.map",
-    "main.313d4ca2.js.map": "/Cyber-Crusaders/static/js/main.313d4ca2.js.map"
+    "main.c127b214.js.map": "/Cyber-Crusaders/static/js/main.c127b214.js.map"
   },
   "entrypoints": [
     "static/css/main.bb8d536e.css",
-    "static/js/main.313d4ca2.js"
+    "static/js/main.c127b214.js"
   ]
 }
