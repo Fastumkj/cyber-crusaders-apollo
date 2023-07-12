@@ -1,0 +1,128 @@
+.profilePage {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  background-image: url(https://media.istockphoto.com/id/1158734314/video/abstract-background.jpg?s=640x640&k=20&c=Yj9WUFCh4frKNkG6H1tvVL0EGz1bnVUkLSPrgVEIRxo=) !important;
+}
+
+.profilePage * {
+  color: white;
+}
+
+.profilecc {
+  margin-right: 800px;
+  margin-top: 10px;
+}
+
+.profile p {
+  font-size: 30px;
+  margin-top: -31px;
+  margin-bottom: 77px;
+}
+
+.profilePage .add {
+  z-index: 1;
+  margin-bottom: -140px;
+  scale: 0.3;
+}
+
+.profilePage h1 {
+  font-size: 30px;
+  background-color: black;
+}
+
+.profilePage img {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  object-fit: fill;
+}
+
+.profilepage-name h2 {
+  margin-top: 140px;
+  margin-left: -55px;
+}
+
+.profilepage-name input,
+.profilepage-name button {
+  margin-top: 135px;
+  height: 50px;
+  width: 200px;
+}
+
+.profilepage-name input {
+  font-size: 30px;
+}
+
+.profilepage-name button {
+  width: 70px;
+}
+
+.nav-container-profile {
+  margin-top: 35px;
+  margin-right: 55px;
+  position: fixed;
+  justify-content: space-between;
+}
+
+.wishListCard {
+  margin-left: -40px;
+}
+
+.profilepage-name {
+  display: flex;
+}
+
+.profilepage-name img {
+  scale: 0.4;
+  margin-top: 100px;
+  margin-left: -25px;
+}
+
+.add {
+  cursor: pointer;
+  margin-left: 30px;
+  transform: scale(1.2);
+  margin-top: 100px;
+}
+
+.profile-pic {
+  margin-top: 80px;
+  transform: scale(2.5);
+}
+
+.profile-config {
+  display: flex;
+  margin-right: auto;
+  justify-content: space-between;
+}
+
+.profile-config > div {
+  margin-left: 35px;
+  margin-top: 50px;
+  width: 500px;
+}
+
+.profile-config .profile {
+  padding-left: 100px;
+}
+
+.pbackground {
+  width: 200px;
+  height: 200px;
+  margin-left: -50px;
+  margin-top: 30px;
+  background-size: contain;
+  position: absolute;
+  z-index: -1;
+  transform: scale(2);
+}
+
+.profile-wishList {
+  background-color: black;
+  margin-left: -10px;
+  margin-top: -30px;
+  width: 75vw;
+  overflow-y: auto;
+  height: calc(100vh - 200px);
+}

@@ -1,0 +1,142 @@
+.gamecc {
+  margin-left: 20px;
+  margin-top: 40px;
+  color: white;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+
+.nav-container-game {
+  display: block;
+}
+
+.game header {
+  z-index: 100;
+}
+
+.gameBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background-image: url(https://media.istockphoto.com/id/1158734314/video/abstract-background.jpg?s=640x640&k=20&c=Yj9WUFCh4frKNkG6H1tvVL0EGz1bnVUkLSPrgVEIRxo=) !important;
+}
+
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: black;
+  position: absolute;
+  top: 180px;
+  left: 25px;
+  z-index: 1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+.hidden {
+  display: none;
+}
+.gameDescription img {
+  margin-top: 20px;
+  margin-left: -200px;
+  height: 400px;
+}
+
+.gameDescription {
+  display: flex;
+  margin-top: 175px;
+  width: 90vw;
+  height: 65vh;
+  margin-left: 100px;
+  border-style: solid;
+  border-width: 4px;
+  border-color: white;
+  background-image: linear-gradient(to right, darkblue, black);
+}
+
+.gameDescription h1 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.gameDescription h3 {
+  font-size: 15px;
+}
+
+.gameDescription ul {
+  display: flex;
+}
+
+.gameDescription li {
+  margin-left: 30px;
+}
+
+.gameDescription ul li:first-child {
+  margin-left: -10px;
+}
+
+.gameInfo {
+  margin-left: -200px;
+  margin-top: 25px;
+  width: 115.5vw;
+  overflow-y: auto;
+}
+
+.gameDescription button {
+  background-color: black;
+}
+
+.gamecomment {
+  display: flex;
+  margin-top: 175px;
+  width: 90vw;
+  height: 65vh;
+  margin-left: 100px;
+  border-style: solid;
+  border-width: 4px;
+  border-color: white;
+  background-image: linear-gradient(to right, darkblue, black);
+}
+
+.gamecomment .coverart {
+  margin-top: 20px;
+  height: 400px;
+  margin-left: -500px;
+}
+
+.gamecomment .commentsection {
+  margin-left: -500px;
+  margin-top: 20px;
+  overflow-y: auto;
+}
+
+.gamecomment .others {
+  margin-left: 10px;
+}

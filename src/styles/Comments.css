@@ -1,0 +1,32 @@
+.comment img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: fill;
+}
+
+.comment .commentProfile {
+  display: flex;
+}
+
+.comment .commentText {
+  margin-left: 64px;
+}
+
+.comment {
+  margin-top: 8px;
+}
+
+.comment h3 {
+  margin-top: 5px;
+}
+
+.comment .delete {
+  scale: 0.7;
+  margin-top: -3px;
+}
+
+.comment .delete:hover {
+  cursor: pointer;
+}

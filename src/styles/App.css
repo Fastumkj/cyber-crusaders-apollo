@@ -1,0 +1,351 @@
+* {
+  font-family: "Chakra Petch";
+  color: white;
+}
+
+.wrapper {
+  background-image: url(https://media.istockphoto.com/id/1158734314/video/abstract-background.jpg?s=640x640&k=20&c=Yj9WUFCh4frKNkG6H1tvVL0EGz1bnVUkLSPrgVEIRxo=) !important;
+  background-size: cover;
+  background-position: center;
+}
+
+header {
+  margin: 0 0;
+  justify-content: center;
+  height: 40px;
+}
+
+.nav-container .cc:hover {
+  cursor: pointer;
+}
+
+.nav-container,
+.nav-container1 {
+  position: fixed;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  width: 100%;
+  z-index: 1;
+  background-image: url(https://media.istockphoto.com/id/1158734314/video/abstract-background.jpg?s=640x640&k=20&c=Yj9WUFCh4frKNkG6H1tvVL0EGz1bnVUkLSPrgVEIRxo=) !important;
+}
+
+.nav-container1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 120px;
+}
+
+.nav-container ul li a:hover,
+.nav-container ul li a.active:hover {
+  color: rgb(205, 89, 216);
+}
+
+.emailname {
+  font-size: 20px;
+  margin-left: 30px;
+  position: relative;
+  cursor: pointer; /* Add cursor style for hover effect */
+}
+
+.emailname::before {
+  content: "";
+  position: absolute;
+  width: calc(100% + 10px);
+  height: 2px;
+  bottom: -3%;
+  background-color: #51ff00;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease-in-out;
+}
+
+.emailname::after {
+  content: "";
+  position: absolute;
+  width: calc(100% + 10px);
+  height: 2px;
+  bottom: -3%;
+  background-color: #c8ff00;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease-in-out;
+}
+
+.emailname:hover::before,
+.emailname:hover::after {
+  transform: scaleX(1);
+}
+
+.user-container {
+  display: flex;
+  align-items: center;
+}
+
+.Profile {
+  font-size: 16px;
+  margin-top: 10px;
+  margin-left: 30px;
+  color: #fff;
+  background-color: #b0c300;
+  border-radius: 5px;
+  padding: 3px;
+  box-shadow: 0 1px 3px #ccc;
+  transition: 0.3s;
+}
+
+.logout-button {
+  margin-left: 30px;
+  color: white;
+  border-color: transparent;
+  border-radius: 5px;
+  background-color: rgb(35, 189, 35);
+  transition: background-color 0.3s, text-decoration 0.3s;
+}
+
+.logout-button:hover {
+  cursor: pointer;
+  background-color: rgb(50, 205, 50);
+  text-decoration: underline;
+  color: #0026ff;
+}
+
+/*.logo {
+  margin-top: 50px;
+  align-items: top;
+  position: relative;
+  flex-direction: column;
+}*/
+
+.logo a {
+  font-size: 40px;
+  text-align: center;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6,
+    0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
+  font-weight: bold;
+  animation: bgColor 10s infinite linear;
+  display: block;
+  margin-left: 25px;
+}
+
+.logo .Profile {
+  font-size: 20px;
+  /*margin-left: 90%;*/
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6,
+    0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
+  font-weight: bold;
+  animation: bgColor 10s infinite linear;
+  display: block;
+}
+
+nav {
+  margin-left: auto;
+  margin-right: 5%;
+}
+
+nav ul {
+  display: flex;
+  margin-top: 20%;
+}
+
+nav li {
+  margin-right: 30px;
+}
+
+nav a {
+  font-size: 16px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.body-container {
+  margin-top: 130px;
+  display: flex;
+}
+
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 30px;
+  height: 30%;
+  background-color: black;
+  background-image: none;
+  justify-content: flex-start;
+}
+
+.product-container img {
+  width: 100%;
+  height: auto;
+}
+
+.pagination {
+  display: flexbox;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/*-----------------------*/
+/*-------FOOTER----------*/
+/*-----------------------*/
+
+.footer {
+  margin-top: -90px;
+}
+
+.footer-profile {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  margin-left: -50px;
+  object-fit: fill;
+}
+
+.footer-top .container {
+  display: grid;
+  gap: 35px;
+  margin-top: 100px;
+}
+
+.social-media {
+  display: flex;
+  gap: 10px;
+  font-size: 2em;
+}
+
+.social-media a:hover {
+  box-shadow: inset 4px 4px 6px -2px rgba(0, 0, 0, 0.2),
+    inset -4px -4px 6px -1px rgba(255, 255, 255, 0.7),
+    -0.5px -0.5px 0px -1px rgba(255, 255, 255, 1),
+    0.5px 0.5px 0px rgba(0, 0, 0, 0.15), 0px 12px 10px -10px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 124, 196, 0.1);
+  transform: translateY(2px);
+}
+
+a:hover .fa-linkedin {
+  color: #0026ff;
+}
+a:hover .fa-github {
+  color: #837272;
+}
+a:hover .fa-telegram {
+  color: #00aeff;
+}
+
+.footer-list-title {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1;
+  position: relative;
+  padding-block-end: 10px;
+  margin-block-end: 20px;
+  max-width: 100%;
+}
+
+.footer-list-img {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  padding-right: 20px;
+  border-radius: 100%;
+}
+
+.footer-list-img img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.has-before,
+.has-after {
+  position: relative;
+}
+
+.has-before::before,
+.has-after::after {
+  content: "";
+  position: absolute;
+}
+
+.footer-list-title::after {
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  height: 4px;
+  background-color: #b700ff;
+}
+
+.footer-link {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  transition: 1;
+  margin-left: -40px;
+}
+
+.footer-link:hover,
+.footer-link:focus-visible {
+  color: purple;
+  font-weight: bold;
+}
+
+.contact-item .span {
+  color: skyblue;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.contact-item:not(:last-child) {
+  margin-block-end: 15px;
+}
+
+.contact-item:not(:first-child) {
+  margin-block-end: 15px;
+}
+
+.contact-link {
+  color: white;
+}
+
+.input-field {
+  color: #0073e6;
+  font-size: 15px;
+  padding: 18px 12px;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgb(4, 255, 42, 0.8); /* behind the scenes lighting */
+  border: 2px solid rgb(248, 248, 248); /* the frame */
+  margin-block-end: 15px; /* make space between "Your email" and "Subscribe now" */
+  outline: none;
+}
+
+.input-field::placeholder {
+  color: #0073e6;
+}
+
+.btn {
+  background-color: black;
+  outline: none;
+  border: none;
+}
+
+.copyright {
+  margin-top: 20px;
+  margin-left: -100px;
+  color: white;
+}
+
+.footer-top .container {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/*.footer-top .container { grid-template-columns: 1fr 0.5fr 0.5fr 1fr; }*/
+
+.footer .logo img {
+  width: 170px;
+}
+
+/* for login-form-container */
+.login-form-container {
+  background-color: transparent;
+}
