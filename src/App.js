@@ -7,6 +7,7 @@ import Card from "./Card";
 import Pagination from "./Pagination";
 import Genre from "./Genre";
 import Platform from "./Platform";
+import NavBar from "./NavBar";
 import { motion, AnimatePresence, color } from "framer-motion";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "./utils/firebase";
@@ -171,7 +172,8 @@ const App = () => {
 
   return (
     <div className="wrapper">
-      <header>
+      <NavBar></NavBar>
+      {/*  <header>
         <div className="nav-container">
           <div className="logo">
             <a className="cc">CyberCrusaders</a>
@@ -194,7 +196,7 @@ const App = () => {
             </button>
           </div>
         </div>
-      </header>
+      </header> */}
 
       <main>
         <div className="body-container">
