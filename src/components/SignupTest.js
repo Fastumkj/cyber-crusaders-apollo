@@ -68,6 +68,7 @@ const SignUp = () => {
       <div
         className="background-container"
         style={{
+          position: 'relative',
           width: '100%',
           minHeight: '100vh',
           backgroundImage: `url(${formbackground})`,
@@ -80,9 +81,9 @@ const SignUp = () => {
           style={{
             position: 'absolute',
             top: 0,
-            left: '50%',
+            right: 0,
             width: '50%',
-            minHeight: '100vh',
+            height: '100%',
             backgroundColor: 'white',
           }}
         ></div>
