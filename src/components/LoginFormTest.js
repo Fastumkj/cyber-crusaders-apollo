@@ -8,9 +8,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import formbackground from '../assets/formbackground.jpg';
 import { color } from 'framer-motion';
 
-
-const catchlines = ['Welcome back!', 'Ready to explore?', 'Let the adventure begin!', 'Unleash your inner astronaut.', 'Start your journey!',
-'Ignite your interstellar adventure!'];
+const catchlines = ['Welcome back!', 'Ready to explore?', 'Let the adventure begin!', 'Unleash your inner astronaut.', 'Start your journey!', 'Ignite your interstellar adventure!'];
 
 const LoginForm = ({ onLogin, isLoggedIn }) => {
   const navigate = useNavigate();
@@ -18,6 +16,7 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
   const [recaptchaVerified, setRecaptchaVerified] = useState(false);
   const recaptchaRef = React.createRef();
   const [catchline, setCatchline] = useState('');
+  const [isLoggingIn, setIsLoggingIn] = useState(false); // New state variable to track login process
 
   useEffect(() => {
     const randomCatchline = catchlines[Math.floor(Math.random() * catchlines.length)];
@@ -31,11 +30,17 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      try {
-        await handleLogin(values.email, values.password);
-        console.log("Logged in!");
-      } catch (error) {
-        console.log('Login error:', error); // Handle login error, display error message, etc.
+      if (!isLoggingIn) { // Check if login is already in progress
+        try {
+          setIsLoggingIn(true); // Set login state to true
+          await handleLogin(values.email, values.password);
+          console.log("Logged in!");
+        } catch (error) {
+          console.log('Login error:', error);
+          alert("Incorrect email or password. Please try again.");
+        } finally {
+          setIsLoggingIn(false); // Reset login state to false
+        }
       }
     },
   });
@@ -52,7 +57,6 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
       // Redirect or perform other actions after successful login
     } catch (error) {
       console.log('Login error:', error);
-      alert("Incorrect email or password. Please try again.");
     }
   };
 
