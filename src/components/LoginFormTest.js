@@ -102,16 +102,18 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
         <div className="row">
           <div className="col-sm-6 text-black">
             <div className="px-5 ms-xl-4">
-            <i className="fas fa-space-shuttle fa-2x me-3 pt-5 mt-xl-4" style={{
-              background: 'linear-gradient(120deg, #9f8bf3, #ff9100)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent'
-            }}></i>
-              <span className="h1 fw-bold mb-0 ml-2" style={{
-                color: 'blue',
-                background: 'linear-gradient(120deg, #9f8bf3, #ff9100)',
-                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-                transition: 'color 0.3s ease-in-out, text-shadow 0.3s ease-in-out'
+            <i className="fas fa-space-shuttle fa-2x me-3 pt-5 mt-xl-4" 
+              style={{
+                background: 'linear-gradient(90deg, #0000ff, #ffffff)', // Strong blue and white gradient background
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                marginLeft: '-50px',
+              }}></i>
+              <span className="h1 fw-bold mb-0 ml-2" 
+              style={{
+                fontFamily: 'Orbitron, sans-serif',
+                color: '#003eff', // Purple color for the text
+                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)', // Text shadow effect
               }}>CyberCrusaders</span>
             </div>
 
