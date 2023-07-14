@@ -4,9 +4,10 @@ import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { collection, getDocs } from "firebase/firestore";
 import "./styles/NavBar.css";
 import Dropdown from "react-bootstrap/Dropdown";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { Autocomplete, TextField, InputAdornment } from "@mui/material";
 
-const NavBar = () => {
+const NavBar = ({ gameList }) => {
   const [name, setName] = useState("guest");
   const [photo, setPhoto] = useState(
     "https://st.depositphotos.com/2101611/4338/v/600/depositphotos_43381243-stock-illustration-male-avatar-profile-picture.jpg"
@@ -39,35 +40,114 @@ const NavBar = () => {
     fetchUserName();
   }, [photo]);
 
+  const displayPhoto = (photo) => {
+    if (photo) {
+      return (
+        "https://images.igdb.com/igdb/image/upload/t_cover_big/" +
+        photo +
+        ".jpg"
+      );
+    }
+  };
+
   const handleLogout = () => {
     auth.signOut();
     window.location.reload();
   };
 
   return (
-    <header>
-      <div className="navbar-logo">
-        <h1 className="navbar-cc">CyberCrusaders</h1>
-      </div>
-
-      <div className="navbar-profile">
-        <img src={photo} alt="profile pic" className="NavBar-pp" />
-
-        <div className="dropdown">
-          <Dropdown>
-            <Dropdown.Toggle data-bs-theme="dark" className="bs-button">
-              me
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item onClick={() => navigate("/Profile")}>
-                my profile
-              </Dropdown.Item>
-              <Dropdown.Item onClick={handleLogout}>log out</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+    <div className="navbar">
+      <header>
+        <div className="navbar-logo">
+          <Link to="./home" className="navbar-cc">
+            CyberCrusaders
+          </Link>
         </div>
-      </div>
-    </header>
+
+        <div className="navbar-search">
+          <Autocomplete
+            style={{ backgroundColor: "white", color: "black" }}
+            options={gameList}
+            getOptionLabel={(option) => option.name}
+            sx={{ width: 300 }}
+            renderOption={(props, option) => {
+              const {
+                name,
+                cover: { image_id: photoURL },
+              } = option;
+
+              return (
+                <div
+                  {...props}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    height: "80px",
+                  }}
+                  onClick={() =>
+                    navigate(`/Game/${option.id}`, {
+                      state: { gameDetails: option },
+                    })
+                  }
+                >
+                  <img
+                    src={displayPhoto(photoURL)}
+                    alt="coverart"
+                    style={{ height: "100px", width: "50px", flexShrink: 0 }}
+                  />
+                  <span style={{ color: "black" }}>{name}</span>
+                </div>
+              );
+            }}
+            renderInput={(renderInputParams) => (
+              <div
+                ref={renderInputParams.InputProps.ref}
+                style={{
+                  alignItems: "center",
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "row",
+                }}
+              >
+                <TextField
+                  style={{ flex: 1 }}
+                  InputProps={{
+                    ...renderInputParams.InputProps,
+                    startAdornment: (
+                      <InputAdornment position="start"> </InputAdornment>
+                    ),
+                  }}
+                  placeholder="Search"
+                  inputProps={{
+                    ...renderInputParams.inputProps,
+                  }}
+                  InputLabelProps={{ style: { display: "none" } }}
+                />
+              </div>
+            )}
+          />
+        </div>
+
+        <div className="navbar-profile">
+          <img src={photo} alt="profile pic" className="NavBar-pp" />
+
+          <div className="dropdown">
+            <Dropdown>
+              <Dropdown.Toggle data-bs-theme="dark" className="bs-button">
+                me
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={() => navigate("/Profile")}>
+                  my profile
+                </Dropdown.Item>
+                <Dropdown.Item onClick={handleLogout}>log out</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
+        </div>
+      </header>
+    </div>
   );
 };
 

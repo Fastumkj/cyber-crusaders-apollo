@@ -1,9 +1,13 @@
 header {
   display: flex;
-  width: 95vw;
-  height: 5vh;
+  width: 100vw;
   justify-content: space-between;
   align-items: self-start;
+}
+
+.navbar {
+  height: 28vh;
+  background-image: url(https://media.istockphoto.com/id/1158734314/video/abstract-background.jpg?s=640x640&k=20&c=Yj9WUFCh4frKNkG6H1tvVL0EGz1bnVUkLSPrgVEIRxo=) !important;
 }
 
 .NavBar-pp {
@@ -32,5 +36,18 @@ header {
 
 .navbar-profile {
   margin-top: 20px;
+  margin-right: 100px;
   display: flex;
+}
+
+.navbar-search {
+  margin-top: 50px;
+  color: white;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+  border: none;
+  outline: none;
 }

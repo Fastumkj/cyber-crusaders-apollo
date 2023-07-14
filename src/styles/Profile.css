@@ -9,11 +9,6 @@
   color: white;
 }
 
-.profilecc {
-  margin-right: 800px;
-  margin-top: 10px;
-}
-
 .profile p {
   font-size: 30px;
   margin-top: -31px;
@@ -59,7 +54,7 @@
 }
 
 .nav-container-profile {
-  margin-top: 35px;
+  margin-top: -25px;
   margin-right: 55px;
   position: fixed;
   justify-content: space-between;

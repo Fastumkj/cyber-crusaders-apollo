@@ -8,40 +8,6 @@
   background-size: cover;
   background-position: center;
 }
-
-header {
-  margin: 0 0;
-  justify-content: center;
-  height: 40px;
-}
-
-.nav-container .cc:hover {
-  cursor: pointer;
-}
-
-.nav-container,
-.nav-container1 {
-  position: fixed;
-  justify-content: space-between;
-  align-items: center;
-  display: flex;
-  width: 100%;
-  z-index: 1;
-  background-image: url(https://media.istockphoto.com/id/1158734314/video/abstract-background.jpg?s=640x640&k=20&c=Yj9WUFCh4frKNkG6H1tvVL0EGz1bnVUkLSPrgVEIRxo=) !important;
-}
-
-.nav-container1 {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 120px;
-}
-
-.nav-container ul li a:hover,
-.nav-container ul li a.active:hover {
-  color: rgb(205, 89, 216);
-}
-
 .emailname {
   font-size: 20px;
   margin-left: 30px;
@@ -118,50 +84,13 @@ header {
   flex-direction: column;
 }*/
 
-.logo a {
-  font-size: 40px;
-  text-align: center;
-  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6,
-    0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
-  font-weight: bold;
-  animation: bgColor 10s infinite linear;
-  display: block;
-  margin-left: 25px;
-}
-
-.logo .Profile {
-  font-size: 20px;
-  /*margin-left: 90%;*/
-  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6,
-    0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
-  font-weight: bold;
-  animation: bgColor 10s infinite linear;
-  display: block;
-}
-
-nav {
-  margin-left: auto;
-  margin-right: 5%;
-}
-
-nav ul {
-  display: flex;
-  margin-top: 20%;
-}
-
-nav li {
-  margin-right: 30px;
-}
-
-nav a {
-  font-size: 16px;
-  color: #ffffff;
-  text-decoration: none;
-}
-
 .body-container {
-  margin-top: 130px;
   display: flex;
+}
+
+.wrapper {
+  position: absolute;
+  top: 180px;
 }
 
 .product-container {

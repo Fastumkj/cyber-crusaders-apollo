@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./styles/App.css";
 import footerlogo from "./assets/footerlogo.jpg";
@@ -13,21 +13,23 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "./utils/firebase";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { collection, onSnapshot, getDocs } from "firebase/firestore";
+import { GameListContext } from "./GameListProvider";
 
 const App = () => {
-  const [gameList, setGameList] = useState([]);
+  const { gameList, setGameList } = useContext(GameListContext);
   const [showLoginForm, setShowLoginForm] = useState(true);
   const [currentPage, setCurrent] = useState(1);
   const [original, setOriginal] = useState([]);
   const [genres, setGenres] = useState([]);
   const [platforms, setPlatforms] = useState([]);
-  const [recordsPerPage] = useState(10);
+  const [recordsPerPage] = useState(12);
   const [user] = useAuthState(auth);
   const [name, setName] = useState("guest");
   const [photo, setPhoto] = useState(
     "https://st.depositphotos.com/2101611/4338/v/600/depositphotos_43381243-stock-illustration-male-avatar-profile-picture.jpg"
   );
   const [emailSubscribed, setEmailSubscribed] = useState(false); // Track email subscription status
+  console.log(gameList);
 
   const navigate = useNavigate();
 
@@ -64,7 +66,6 @@ const App = () => {
 
     fetchInfo();
     fetchProfilePic();
-    console.log(photo);
     fetchUserName();
   }, [photo]);
 
@@ -171,9 +172,10 @@ const App = () => {
   const currentRecords = gameList.slice(indexOfFirstRecord, indexOfLastRecord);
 
   return (
-    <div className="wrapper">
-      <NavBar></NavBar>
-      {/*  <header>
+    <>
+      <NavBar gameList={gameList}></NavBar>
+      <div className="wrapper">
+        {/*  <header>
         <div className="nav-container">
           <div className="logo">
             <a className="cc">CyberCrusaders</a>
@@ -198,135 +200,136 @@ const App = () => {
         </div>
       </header> */}
 
-      <main>
-        <div className="body-container">
-          <div className="genre-container">
-            <Genre filterByGenres={filterCondition} />
+        <main>
+          <div className="body-container">
+            <div className="genre-container">
+              <Genre filterByGenres={filterCondition} />
+            </div>
+            {/* fields name, release_dates, screenshots, prices */}
+            <motion.div layout className="product-container">
+              <AnimatePresence>
+                {currentRecords.map((game) => (
+                  <div
+                    key={game.id}
+                    onClick={() =>
+                      navigate(`/Game/${game.id}`, {
+                        state: { gameDetails: game },
+                      })
+                    }
+                  >
+                    <Card
+                      name={game.name}
+                      first_release_date={game.first_release_date}
+                      cover={game.cover ? game.cover.image_id : null}
+                    />
+                  </div>
+                ))}
+              </AnimatePresence>
+            </motion.div>
           </div>
-          {/* fields name, release_dates, screenshots, prices */}
-          <motion.div layout className="product-container">
-            <AnimatePresence>
-              {currentRecords.map((game) => (
-                <div
-                  key={game.id}
-                  onClick={() =>
-                    navigate(`/Game/${game.id}`, {
-                      state: { gameDetails: game },
-                    })
-                  }
-                >
-                  <Card
-                    name={game.name}
-                    first_release_date={game.first_release_date}
-                    cover={game.cover ? game.cover.image_id : null}
-                  />
+        </main>
+
+        <div className="pagination">
+          <Pagination
+            current={currentPage}
+            posts={recordsPerPage}
+            total={gameList.length}
+            paginate={paginate}
+          />
+        </div>
+
+        <footer className="footer">
+          <div className="section footer-top">
+            <div className="container">
+              <div className="footer-brand">
+                <img
+                  className="footer-profile"
+                  src={photo}
+                  width="75"
+                  height="75"
+                  loading="lazy"
+                  alt="CC logo"
+                />
+              </div>
+              <div className="footer-list-img">
+                <img src={joystick} alt="logo" />
+              </div>
+              <div className="footer-list">
+                <p className="title footer-list-title has-after">Contact Us</p>
+                <div className="contact-item">
+                  <span className="span">Location:</span>
+                  <address className="contact-link">
+                    National University of Singapore, 21 Lower Kent Ridge Rd
+                  </address>
                 </div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
-        </div>
-      </main>
-
-      <div className="pagination">
-        <Pagination
-          current={currentPage}
-          posts={recordsPerPage}
-          total={gameList.length}
-          paginate={paginate}
-        />
-      </div>
-
-      <footer className="footer">
-        <div className="section footer-top">
-          <div className="container">
-            <div className="footer-brand">
-              <img
-                className="footer-profile"
-                src={photo}
-                width="75"
-                height="75"
-                loading="lazy"
-                alt="CC logo"
-              />
-            </div>
-            <div className="footer-list-img">
-              <img src={joystick} alt="logo" />
-            </div>
-            <div className="footer-list">
-              <p className="title footer-list-title has-after">Contact Us</p>
-              <div className="contact-item">
-                <span className="span">Location:</span>
-                <address className="contact-link">
-                  National University of Singapore, 21 Lower Kent Ridge Rd
-                </address>
+                <div className="contact-item">
+                  <span className="span">Join Us:</span>
+                  <a href="mailto:e0941187@u.nus.edu" className="contact-link">
+                    Lim Jun Ming
+                  </a>
+                  <br></br>
+                  <a href="mailto:e0959239@u.nus.edu" className="contact-link">
+                    Pung Kah Jyun
+                  </a>
+                </div>
+                <div className="social-media">
+                  <a href="https://www.linkedin.com/">
+                    <font color="#007cc4">
+                      <i className="fab fa-linkedin"></i>
+                    </font>
+                  </a>
+                  <a href="https://github.com/1uck13ss/Cyber-Crusaders">
+                    <font color="#007cc4">
+                      <i className="fab fa-github"></i>
+                    </font>
+                  </a>
+                  <a href="https://t.me/kahjyun">
+                    <font color="#007cc4">
+                      <i className="fab fa-telegram"></i>
+                    </font>
+                  </a>
+                </div>
               </div>
-              <div className="contact-item">
-                <span className="span">Join Us:</span>
-                <a href="mailto:e0941187@u.nus.edu" className="contact-link">
-                  Lim Jun Ming
-                </a>
-                <br></br>
-                <a href="mailto:e0959239@u.nus.edu" className="contact-link">
-                  Pung Kah Jyun
-                </a>
-              </div>
-              <div className="social-media">
-                <a href="https://www.linkedin.com/">
-                  <font color="#007cc4">
-                    <i className="fab fa-linkedin"></i>
-                  </font>
-                </a>
-                <a href="https://github.com/1uck13ss/Cyber-Crusaders">
-                  <font color="#007cc4">
-                    <i className="fab fa-github"></i>
-                  </font>
-                </a>
-                <a href="https://t.me/kahjyun">
-                  <font color="#007cc4">
-                    <i className="fab fa-telegram"></i>
-                  </font>
-                </a>
+              <div className="footer-list">
+                <p className="title footer-list-title has-after">
+                  Games Updates Signup
+                </p>
+                {emailSubscribed ? (
+                  <p className="subscription"> Thank you for subscribing! :)</p>
+                ) : (
+                  <form
+                    onSubmit={handleEmailSubscription}
+                    method="get"
+                    className="footer-form"
+                  >
+                    <input
+                      type="email"
+                      name="email_address"
+                      required
+                      placeholder="Your Email"
+                      autocomplete="off"
+                      className="input-field"
+                      value={user.email}
+                    />
+                    <br />
+                    <button type="submit" className="btn" data-btn>
+                      Subscribe Now
+                    </button>
+                  </form>
+                )}
               </div>
             </div>
-            <div className="footer-list">
-              <p className="title footer-list-title has-after">
-                Games Updates Signup
+          </div>
+          <div className="footer-bottom">
+            <div className="container">
+              <p className="copyright">
+                &copy; 2023 CyberCrusaders All Rights Reserved.
               </p>
-              {emailSubscribed ? (
-                <p className="subscription"> Thank you for subscribing! :)</p>
-              ) : (
-                <form
-                  onSubmit={handleEmailSubscription}
-                  method="get"
-                  className="footer-form"
-                >
-                  <input
-                    type="email"
-                    name="email_address"
-                    required
-                    placeholder="Your Email"
-                    autocomplete="off"
-                    className="input-field"
-                    value={user.email}
-                  />
-                  <br />
-                  <button type="submit" className="btn" data-btn>
-                    Subscribe Now
-                  </button>
-                </form>
-              )}
             </div>
           </div>
-        </div>
-        <div className="footer-bottom">
-          <div className="container">
-            <p className="copyright">
-              &copy; 2023 CyberCrusaders All Rights Reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
-    </div>
+        </footer>
+      </div>
+    </>
   );
 };
 
