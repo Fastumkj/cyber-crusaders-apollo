@@ -7,7 +7,6 @@ import { auth } from "../utils/firebase.js";
 import ReCAPTCHA from "react-google-recaptcha";
 import formbackground from '../assets/formbackground.jpg';
 import { color } from 'framer-motion';
-import Stars from '../components/Stars';
 
 const catchlines = ['Welcome back!', 'Ready to explore?', 'Let the adventure begin!', 'Unleash your inner astronaut.', 'Start your journey!', 'Ignite your interstellar adventure!'];
 
@@ -100,7 +99,6 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
         }}
       ></div>
       <div className="container-fluid" style={{ marginLeft: '10%' }}>
-        <Stars/>
         <div className="row">
           <div className="col-sm-6 text-black">
             <div className="px-5 ms-xl-4">
