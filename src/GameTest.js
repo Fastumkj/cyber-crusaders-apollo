@@ -280,8 +280,6 @@ const Game = () => {
         </div>
       </div>
     </div>
-
-    
   );
 };
 

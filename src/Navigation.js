@@ -6,10 +6,6 @@ import App from "./App";
 import Game from "./Game";
 import Profile from "./Profile";
 
-import LoginFormTest from "./components/LoginFormTest";
-import SignUpTest from "./components/SignupTest";
-
-
 const Navigation = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -22,9 +18,9 @@ const Navigation = () => {
     <Routes>
       <Route
         path="/login"
-        element={<LoginFormTest onLogin={handleLogin} isLoggedIn={isLoggedIn} />}
+        element={<LoginForm onLogin={handleLogin} isLoggedIn={isLoggedIn} />}
       />
-      <Route path="/signup" element={<SignUpTest />} />
+      <Route path="/signup" element={<SignUp />} />
       <Route
         path="/home"
         element={

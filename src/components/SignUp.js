@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import { validationSchema } from '../utils/validation.js';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from "../utils/firebase.js";
-import gifBackground from '../assets/gifBackground.gif';
+import formbackground from '../assets/formbackground.jpg';
 
 
 const catchlines = ['Join us today!', 'Unlock exclusive benefits!', 'Discover a new world!', 'Experience the future!', 'Level up your journey!'];
@@ -12,7 +12,6 @@ const catchlines = ['Join us today!', 'Unlock exclusive benefits!', 'Discover a 
 const SignUp = () => {
 
   const navigate = useNavigate(); //Get the navigate function from react-router
-
   const [catchline, setCatchline] = useState('');
 
   useEffect(() => {
@@ -65,125 +64,185 @@ const SignUp = () => {
   };
 
   return (
-    <div className="signUpContainer" style={{ width: '100vw', height: '100vh', backgroundImage: `url(${gifBackground})`, backgroundSize: 'cover', overflow: 'hidden' }}>
-      <h1 className="text-green text-center font-weight-bold" style={{ color: 'floralwhite', fontSize: '40px', background: 'transparent', fontFamily: 'Arial, sans-serif', letterSpacing: '2px', textShadow: '2px 2px 4px #00ccff, 4px 4px 6px #0066cc' }}>
-        FORM SIGN UP
-      </h1>
+    <section className="vh-100" style={{ fontFamily: 'Chakra Petch, sans-serif' }}>
+      <div
+        className="background-container"
+        style={{
+          position: 'relative',
+          width: '100%',
+          minHeight: '100vh',
+          backgroundImage: `url(${formbackground})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'right',
+        }}
+      >
+        <div
+          className="white-overlay"
+          style={{
+            position: 'absolute',
+            top: 0,
+            right: 0,
+            width: '50%',
+            height: '100%',
+            backgroundColor: 'white',
+          }}
+        ></div>
+        <div className="container-fluid">
+        <div style={{ marginRight: '-15%' }}>
+          <div className="row justify-content-end">
+            <div className="col-sm-6 text-black" >
+              <div className="px-5 ms-xl-4">
+                <i
+                  className="fas fa-space-shuttle fa-2x me-3 pt-5 mt-xl-4"
+                  style={{
+                    background: 'linear-gradient(90deg, #0000ff, #ffffff)', // Strong blue and white gradient background
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    marginLeft: '-50px',
+                  }}
+                ></i>
+                <span 
+                  className="h1 fw-bold mb-0 ml-2"
+                  style={{
+                    fontFamily: 'Orbitron, sans-serif',
+                    color: '#003eff', // Purple color for the text
+                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)', // Text shadow effect
+                  }}
+                  
+                  
+                >
+                  SIGN UP ACCOUNT
+                </span>
+              </div>
 
-      <h4 className="text-blue text-center font-weight-bold" style={{ color: 'floralwhite', fontSize: '40px', background: 'transparent' }}>
-        {catchline}
-      </h4>
+              <div className="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+                <form style={{ width: '23rem' }} onSubmit={formik.handleSubmit}>
+                  <h3
+                    className="fw-normal mb-3 pb-3"
+                    style={{
+                      background: 'linear-gradient(120deg, #9f8bf3, #ff9100)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      transition: 'color 0.3s ease-in-out',
+                    }}
+                  >
+                    {catchline}
+                  </h3>
 
-      <div className="sign-up-container" style={{ backgroundColor: 'transparent', marginTop: '80px' }}>
-        <br />
+                    <form onSubmit={formik.handleSubmit} style={{ background: 'transparent', border: 'none' }}></form>
+                        <div className="form-group" style={{ backgroundColor: 'transparent' }}>
+                        <label htmlFor="name" className="font-weight-regular" style={{ color:'black' }}>
+                            Name
+                        </label>
+                        <input
+                            type="text"
+                            name="name"
+                            className="form-control form-control-lg"
+                            placeholder = "Enter your name..."
+                            id="name"
+                            autoComplete="off"
+                            value={formik.values.name}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            maxLength={25}
+                        />
+                        {formik.touched.name && formik.errors.name && (
+                            <span className="text-danger font-weight-regular">{formik.errors.name}</span>
+                        )}
+                        </div>
 
-        <div className="col-lg-5 m-auto d-block" style={{ backgroundColor: 'black', borderRadius: '10px' }}>
-          <form onSubmit={formik.handleSubmit} style={{ background: 'transparent', border: 'none' }}>
-            <div className="form-group" style={{ backgroundColor: 'transparent' }}>
-              <label htmlFor="name" className="font-weight-regular" style={{ color:'floralwhite', backgroundColor: 'transparent' }}>
-                Name
-              </label>
-              <input
-                type="text"
-                name="name"
-                className="form-control"
-                placeholder = "Enter your name..."
-                id="name"
-                autoComplete="off"
-                value={formik.values.name}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                maxLength={25}
-              />
-              {formik.touched.name && formik.errors.name && (
-                <span className="text-danger font-weight-regular">{formik.errors.name}</span>
-              )}
+                        <div className="form-outline mb-4">
+                        <label htmlFor="email" className="font-weight-regular" style={{ color:'black' }}>
+                            Email
+                        </label>
+                        <input
+                            type="email"
+                            id="form2Example18"
+                            className="form-control form-control-lg"
+                            placeholder="Email address"
+                            name="email"
+                            value={formik.values.email}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            style={{ marginTop: '5px' }}
+                        />
+                        {formik.touched.email && formik.errors.email && (
+                            <span className="text-danger font-weight-regular">{formik.errors.email}</span>
+                        )}
+                    </div>
+
+                    <div className="form-outline mb-4">
+                        <label htmlFor="password" className="font-weight-regular" style={{ color:'black' }}>
+                            Password
+                        </label>
+                        <input
+                        type="password"
+                        id="form2Example28"
+                        className="form-control form-control-lg"
+                        placeholder="Password"
+                        name="password"
+                        value={formik.values.password}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        />
+                        {formik.touched.password && formik.errors.password && (
+                        <span className="text-danger font-weight-regular">{formik.errors.password}</span>
+                        )}
+                    </div>
+
+                    <div className="form-outline mb-4">
+                        <label htmlFor="confirmPassword" className="font-weight-regular" style={{ color:'black' }}>
+                            Confirm Password
+                        </label>
+                        <input
+                        type="password"
+                        id="form2Example28"
+                        className="form-control form-control-lg"
+                        placeholder="Confirm Password"
+                        name="confirmPassword"
+                        value={formik.values.confirmPassword}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        />
+                        {formik.touched.confirmPassword && formik.errors.confirmPassword && (
+                        <span className="text-danger font-weight-regular">{formik.errors.confirmPassword}</span>
+                        )}
+                    </div>
+
+                  <div className="pt-1 mb-4">
+                  <input
+                        type="submit"
+                        name="submit"
+                        value="Submit"
+                        className="btn btn-primary"
+                        autoComplete="off"
+                    />
+                    <input
+                        type="reset"
+                        name="reset"
+                        value="Reset"
+                        className="btn btn-secondary"
+                        autoComplete="off"
+                        onClick={handleReset} 
+                    />
+                  </div>
+
+
+                  <p style={{ color: 'black' }}>
+                    Already have an account?
+                    <Link to="/login" className="link-info" style={{ marginLeft: '5px' }}>
+                      Login
+                    </Link>
+                  </p>
+                </form>
+              </div>
             </div>
-
-            <div className="form-group" style={{ backgroundColor: 'transparent' }}>
-              <label htmlFor="email" className="font-weight-regular" style={{ color:'floralwhite', backgroundColor: 'transparent' }}>
-                Email
-              </label>
-              <input
-                type="text"
-                name="email"
-                className="form-control"
-                placeholder = "Enter your email..."
-                id="email"
-                autoComplete="off"
-                value={formik.values.email}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-              {formik.touched.email && formik.errors.email && (
-                <span className="text-danger font-weight-regular">{formik.errors.email}</span>
-              )}
-            </div>
-
-            <div className="form-group" style={{ backgroundColor: 'transparent' }}>
-              <label htmlFor="password" className="font-weight-regular" style={{ color:'floralwhite', backgroundColor: 'transparent' }}>
-                Password
-              </label>
-              <input
-                type="password"
-                name="password"
-                className="form-control"
-                placeholder = "Enter your password..."
-                id="password"
-                autoComplete="off"
-                value={formik.values.password}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-              {formik.touched.password && formik.errors.password && (
-                <span className="text-danger font-weight-regular">{formik.errors.password}</span>
-              )}
-            </div>
-
-            <div className="form-group" style={{ backgroundColor: 'transparent' }}>
-              <label htmlFor="confirmPassword" className="font-weight-regular" style={{ color:'floralwhite', backgroundColor: 'transparent' }}>
-                Confirm Password
-              </label>
-              <input
-                type="password"
-                name="confirmPassword"
-                className="form-control"
-                placeholder = "Enter your password..."
-                id="confirmPassword"
-                autoComplete="off"
-                value={formik.values.confirmPassword}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-              {formik.touched.confirmPassword && formik.errors.confirmPassword && (
-                <span className="text-danger font-weight-regular">{formik.errors.confirmPassword}</span>
-              )}
-            </div>
-
-            <input
-              type="submit"
-              name="submit"
-              value="Submit"
-              className="btn btn-primary"
-              autoComplete="off"
-            />
-            <input
-              type="reset"
-              name="reset"
-              value="Reset"
-              className="btn btn-secondary"
-              autoComplete="off"
-              onClick={handleReset} 
-            />
-          </form>
-          <br></br>
-          <div style={{ color:'floralwhite', backgroundColor: 'transparent' }}>
-            Already have an account? <Link to="/login">Login</Link>
           </div>
         </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
-}
+};
 
 export default SignUp;
