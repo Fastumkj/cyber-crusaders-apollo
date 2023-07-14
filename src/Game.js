@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { auth, db } from "./utils/firebase.js";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
@@ -19,8 +19,6 @@ import { Link } from "react-router-dom";
 import Comment from "./Comment.js";
 import CommentData from "./CommentData.js";
 import Comments from "./Comments";
-import NavBar from "./NavBar.js";
-import { GameListContext } from "./GameListProvider.js";
 
 const Game = () => {
   const location = useLocation();
@@ -34,7 +32,6 @@ const Game = () => {
   const [display, setDisplay] = useState(true);
   const [isAdded, setIsAdded] = useState(false);
   const [isInWishList, setIsInWishList] = useState(false);
-  const { gameList } = useContext(GameListContext);
 
   useEffect(() => {
     const fetchProfilePic = async () => {
@@ -196,10 +193,25 @@ const Game = () => {
   return (
     <div className="game">
       <div className="gameBackground"></div>
-      <NavBar gameList={gameList} />
+      <header>
+        <div className="nav-container-game">
+          <div className="logo">
+            <Link to="/home" className="gamecc">
+              CyberCrusaders
+            </Link>
+            <Link to="/Profile" className="Profile">
+              {" "}
+              Profile{" "}
+            </Link>
+          </div>
+        </div>
+      </header>
       <div class="tab">
-        <button class="tablinks" onClick={() => setDisplay(true)}>
-          Description
+        <button class="tablinks" onClick={() => {
+          setDisplay(true);
+          window.history.back();
+        }}>
+          Go Back
         </button>
         <button class="tablinks" onClick={() => setDisplay(false)}>
           Comment
@@ -243,21 +255,8 @@ const Game = () => {
             ) : (
               <p>No known information available.</p>
             )}
-            <button
-              onClick={addToWishlist}
-              style={{
-                backgroundColor: isAdded
-                  ? "black"
-                  : isInWishList
-                  ? "red"
-                  : "green",
-              }}
-            >
-              {isAdded
-                ? "Adding..."
-                : isInWishList
-                ? "Remove from Wish List"
-                : "Add to Wish List"}
+            <button onClick={addToWishlist} style={{ backgroundColor: isAdded ? "black" : isInWishList ? "red" : "green" }}>
+              {isAdded ? "Adding..." : (isInWishList ? "Remove from Wish List" : "Add to Wish List")}
             </button>
           </div>
         </div>
@@ -284,8 +283,6 @@ const Game = () => {
         </div>
       </div>
     </div>
-
-    
   );
 };
 

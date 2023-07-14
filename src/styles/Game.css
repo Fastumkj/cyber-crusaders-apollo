@@ -31,34 +31,35 @@
 
 .tab {
   overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: black;
+  background-color: rgb(0, 0, 0);
   position: absolute;
   top: 180px;
   left: 25px;
   z-index: 1;
-}
-
-/* Style the buttons that are used to open the tab content */
-.tab button {
-  background-color: inherit;
-  float: none;
   border: none;
-  outline: none;
   cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
+  font-size: 16px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  border-radius: 20%;
 }
 
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
+.tab button {
+  background-color: rgb(0, 0, 0);
+  color: rgb(3, 255, 255);
 }
 
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: #ccc;
+.tab button::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid rgb(3, 255, 255);
+  transform: rotate(-45deg);
+  margin-right: 6px;
 }
+
 
 .hidden {
   display: none;
@@ -78,7 +79,9 @@
   border-style: solid;
   border-width: 4px;
   border-color: white;
-  background-image: linear-gradient(to right, darkblue, black);
+  background-image: url("https://user-images.githubusercontent.com/26748614/96337246-f14d4580-1085-11eb-8793-a86d929e034d.jpg");
+  background-image: cover;
+  border-radius: 20px;
 }
 
 .gameDescription h1 {
@@ -122,7 +125,9 @@
   border-style: solid;
   border-width: 4px;
   border-color: white;
-  background-image: linear-gradient(to right, darkblue, black);
+  background-image: url("https://user-images.githubusercontent.com/26748614/96337246-f14d4580-1085-11eb-8793-a86d929e034d.jpg");
+  background-image: cover;
+  border-radius: 20px;
 }
 
 .gamecomment .coverart {
