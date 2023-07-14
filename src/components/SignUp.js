@@ -77,7 +77,7 @@ const SignUp = () => {
       <div className="sign-up-container" style={{ backgroundColor: 'transparent', marginTop: '80px' }}>
         <br />
 
-        <div className="col-lg-5 m-auto d-block" style={{ backgroundColor: 'black', borderRadius: '10px', opacity: '0.6' }}>
+        <div className="col-lg-5 m-auto d-block" style={{ backgroundColor: 'black', borderRadius: '10px' }}>
           <form onSubmit={formik.handleSubmit} style={{ background: 'transparent', border: 'none' }}>
             <div className="form-group" style={{ backgroundColor: 'transparent' }}>
               <label htmlFor="name" className="font-weight-regular" style={{ color:'floralwhite', backgroundColor: 'transparent' }}>
