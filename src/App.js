@@ -1,23 +1,20 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./styles/App.css";
-import footerlogo from "./assets/footerlogo.jpg";
 import joystick from "./assets/joystick.jpg";
 import Card from "./Card";
 import Pagination from "./Pagination";
-import Genre from "./Genre";
-import Platform from "./Platform";
 import NavBar from "./NavBar";
-import { motion, AnimatePresence, color } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "./utils/firebase";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
-import { collection, onSnapshot, getDocs } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { GameListContext } from "./GameListProvider";
+import Dropdown from "react-bootstrap/Dropdown";
 
 const App = () => {
   const { gameList, setGameList } = useContext(GameListContext);
-  const [showLoginForm, setShowLoginForm] = useState(true);
   const [currentPage, setCurrent] = useState(1);
   const [original, setOriginal] = useState([]);
   const [genres, setGenres] = useState([]);
@@ -29,14 +26,9 @@ const App = () => {
     "https://st.depositphotos.com/2101611/4338/v/600/depositphotos_43381243-stock-illustration-male-avatar-profile-picture.jpg"
   );
   const [emailSubscribed, setEmailSubscribed] = useState(false); // Track email subscription status
-  console.log(gameList);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const navigate = useNavigate();
-
-  const handleLogout = () => {
-    auth.signOut();
-    window.location.reload();
-  };
 
   const handleEmailSubscription = () => {
     setEmailSubscribed(true);
@@ -67,7 +59,7 @@ const App = () => {
     fetchInfo();
     fetchProfilePic();
     fetchUserName();
-  }, [photo]);
+  }, []);
 
   useEffect(() => {
     const updateGameList = () => {
@@ -167,6 +159,10 @@ const App = () => {
     setCurrent(pageNumber);
   };
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
   const currentRecords = gameList.slice(indexOfFirstRecord, indexOfLastRecord);
@@ -199,12 +195,93 @@ const App = () => {
           </div>
         </div>
       </header> */}
+        <Dropdown>
+          <Dropdown.Toggle id="dropdown-basic" className="filter">
+            Filter
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            <div style={{ display: "flex" }}>
+              <div style={{ flex: 1 }}>
+                <Dropdown.Header
+                  style={{
+                    fontWeight: "bold",
+                    color: "black",
+                    fontSize: "16px",
+                  }}
+                >
+                  Platform
+                </Dropdown.Header>
+                <Dropdown.Divider />
+                <Dropdown.Item>PC</Dropdown.Item>
+                <Dropdown.Item>Nintendo Switch</Dropdown.Item>
+                <Dropdown.Item>PlayStation</Dropdown.Item>
+                <Dropdown.Item>Xbox</Dropdown.Item>
+                <Dropdown.Item>Android</Dropdown.Item>
+                <Dropdown.Item>IOS</Dropdown.Item>
+              </div>
+
+              <div
+                style={{
+                  width: "1px",
+                  backgroundColor: "gray",
+                  margin: "0 10px",
+                }}
+              ></div>
+
+              <div style={{ flex: 1 }}>
+                <Dropdown.Header
+                  style={{
+                    fontWeight: "bold",
+                    color: "black",
+                    fontSize: "16px",
+                  }}
+                >
+                  Genre
+                </Dropdown.Header>
+                <Dropdown.Divider />
+                <Dropdown.Item>Point-and-click</Dropdown.Item>
+                <Dropdown.Item>Fighting</Dropdown.Item>
+                <Dropdown.Item>Shooter</Dropdown.Item>
+                <Dropdown.Item>Music</Dropdown.Item>
+                <Dropdown.Item>Platform</Dropdown.Item>
+                <Dropdown.Item>Puzzle</Dropdown.Item>
+                <Dropdown.Item>Racing</Dropdown.Item>
+                <Dropdown.Item>RTS</Dropdown.Item>
+                <Dropdown.Item>RPG</Dropdown.Item>
+              </div>
+              <div style={{ flex: 1 }}>
+                <Dropdown.Header style={{ height: "40px" }}>
+                  &nbsp;
+                </Dropdown.Header>
+                <Dropdown.Divider />
+                <Dropdown.Item>Simulator</Dropdown.Item>
+                <Dropdown.Item>Sport</Dropdown.Item>
+                <Dropdown.Item>Strategy</Dropdown.Item>
+                <Dropdown.Item>TBS</Dropdown.Item>
+                <Dropdown.Item>Tactical</Dropdown.Item>
+                <Dropdown.Item>Quiz</Dropdown.Item>
+                <Dropdown.Item>Hack and Slash</Dropdown.Item>
+                <Dropdown.Item>Adventure</Dropdown.Item>
+                <Dropdown.Item>Arcade</Dropdown.Item>
+              </div>
+              <div style={{ flex: 1 }}>
+                <Dropdown.Header style={{ height: "40px" }}>
+                  &nbsp;
+                </Dropdown.Header>
+                <Dropdown.Divider />
+                <Dropdown.Item>Visual Novel</Dropdown.Item>
+                <Dropdown.Item>Indie</Dropdown.Item>
+                <Dropdown.Item>Card & Board Game</Dropdown.Item>
+                <Dropdown.Item>MOBA</Dropdown.Item>
+                {/* Add more genre options here */}
+              </div>
+            </div>
+          </Dropdown.Menu>
+        </Dropdown>
 
         <main>
           <div className="body-container">
-            <div className="genre-container">
-              <Genre filterByGenres={filterCondition} />
-            </div>
             {/* fields name, release_dates, screenshots, prices */}
             <motion.div layout className="product-container">
               <AnimatePresence>
@@ -228,7 +305,6 @@ const App = () => {
             </motion.div>
           </div>
         </main>
-
         <div className="pagination">
           <Pagination
             current={currentPage}
@@ -237,7 +313,6 @@ const App = () => {
             paginate={paginate}
           />
         </div>
-
         <footer className="footer">
           <div className="section footer-top">
             <div className="container">

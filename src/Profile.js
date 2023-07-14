@@ -167,8 +167,8 @@ const Profile = () => {
             </div>
 
             <div className="wishlistbackground">
+              <h2> Wish List </h2>
               <div className="profile-wishList">
-                <h1> Wish List </h1>
                 <ul>
                   {list.map((game) => {
                     return (
@@ -186,11 +186,6 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        {/*<ul className="wishListGame">
-        {list.map((game) => (
-          <li key={game.gameDetails.name}>{game.gameDetails.name}</li>
-        ))}
-        </ul>*/}
         {loading && <p>Loading...</p>}
       </div>
     </>
