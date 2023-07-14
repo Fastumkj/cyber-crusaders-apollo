@@ -8,16 +8,23 @@ import {
   where,
   getDocs,
 } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 const WishListCard = (game) => {
+  let navigate = useNavigate();
   let imageUrl = icon;
-  if (game.cover) {
+  if (game.game.cover) {
     imageUrl =
       "https://images.igdb.com/igdb/image/upload/t_cover_big/" +
-      game.cover +
+      game.game.cover.image_id +
       ".jpg";
   }
 
+  const handleClick = () => {
+    navigate(`/Game/${game.game.id}`, {
+      state: { gameDetails: game.game },
+    });
+  };
   const remove = async () => {
     var db_ref = collection(db, auth.currentUser.uid);
     let batch = writeBatch(db);
@@ -50,10 +57,10 @@ const WishListCard = (game) => {
 
   return (
     <div className="wishListCard">
-      <img src={imageUrl} alt="game-art"></img>
+      <img src={imageUrl} onClick={handleClick} alt="game-art"></img>
       <div className="cardDetails">
-        <h1> {game.name} </h1>
-        <h3> {convert(game.first_release_date)} </h3>
+        <h1> {game.game.name} </h1>
+        <h3> {convert(game.game.first_release_date)} </h3>
         <img
           className="redX"
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIiq7sZW1MwcJYH5gj-7UsvNp6K379AzJ_yg&usqp=CAU"

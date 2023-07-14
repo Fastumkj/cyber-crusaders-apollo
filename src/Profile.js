@@ -1,14 +1,16 @@
 import { auth, db, storage } from "./utils/firebase.js";
 import { collection, onSnapshot, setDoc, doc } from "firebase/firestore";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { updateProfile } from "firebase/auth";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import "./styles/Profile.css";
 import edit from "./assets/edit.png";
-import { Link } from "react-router-dom";
 import plus from "./assets/plus.jpg";
 import pbackground from "./assets/profilebackground.jpg";
 import WishListCard from "./WishListCard";
+import { GameListContext } from "./GameListProvider.js";
+import NavBar from "./NavBar.js";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const [list, setList] = useState([]);
@@ -20,6 +22,8 @@ const Profile = () => {
     "https://st.depositphotos.com/2101611/4338/v/600/depositphotos_43381243-stock-illustration-male-avatar-profile-picture.jpg"
   );
   const inputRef = useRef(null);
+  const { gameList } = useContext(GameListContext);
+  let navigate = useNavigate();
 
   useEffect(() => {
     const storage = getStorage();
@@ -97,14 +101,10 @@ const Profile = () => {
   };
 
   return (
-    <div className="profilePage">
-      <header>
+    <>
+      <NavBar gameList={gameList} />
+      <div className="profilePage">
         <div className="nav-container-profile">
-          <nav className="logo">
-            <Link to="/home" className="profilecc">
-              CyberCrusaders
-            </Link>
-          </nav>
           <div className="profile-config">
             <div className="profile">
               <p>Profile</p>
@@ -176,16 +176,7 @@ const Profile = () => {
                         {" "}
                         <WishListCard
                           className="wishListCard"
-                          name={game.gameDetails.name}
-                          first_release_date={
-                            game.gameDetails.first_release_date
-                          }
-                          cover={
-                            game.gameDetails.cover
-                              ? game.gameDetails.cover.image_id
-                              : null
-                          }
-                          id={game.gameDetails.id}
+                          game={game.gameDetails}
                         />
                       </li>
                     );
@@ -195,14 +186,14 @@ const Profile = () => {
             </div>
           </div>
         </div>
-      </header>
-      {/*<ul className="wishListGame">
+        {/*<ul className="wishListGame">
         {list.map((game) => (
           <li key={game.gameDetails.name}>{game.gameDetails.name}</li>
         ))}
         </ul>*/}
-      {loading && <p>Loading...</p>}
-    </div>
+        {loading && <p>Loading...</p>}
+      </div>
+    </>
   );
 };
 

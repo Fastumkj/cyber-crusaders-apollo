@@ -9,6 +9,7 @@ import LoginForm from "./components/LoginForm";
 import Navigation from "./Navigation";
 /*import SignUp from "./components/SignUp";*/
 import { HashRouter as Router } from "react-router-dom";
+import { GameListProvider } from "./GameListProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -20,8 +21,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Router>
-      {/*<App></App>*/}
-      <Navigation />
+      <GameListProvider>
+        {App}
+        <Navigation />
+      </GameListProvider>
     </Router>
   </React.StrictMode>
 );
