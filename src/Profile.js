@@ -137,7 +137,7 @@ const Profile = () => {
                       onChange={handleInputChange}
                       onKeyPress={handleKeyPress}
                       style={{ backgroundColor: "black" }}
-                      maxLength={25}
+                      maxLength={15}
                     />
                     <button
                       onClick={saveName}

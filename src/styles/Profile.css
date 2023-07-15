@@ -125,14 +125,14 @@
   border-style: solid;
   padding-left: 10px;
   border-radius: 10px;
-  background-color: black;
   background-image: url("https://wallpaper.dog/large/5492455.jpg");
+  background-color: black;
   background-repeat: no-repeat;
   background-position: 400px 0px;
   margin-left: -10px;
   margin-top: -30px;
-  width: 63.5vw;
+  width: 55vw;
   overflow-y: auto;
-  height: 70vh;
+  height: 450px;
   overflow-x: hidden;
 }
