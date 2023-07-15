@@ -35,7 +35,9 @@ const Paginate = ({ current, posts, total, paginate }) => {
             onClick={() => paginate(number)}
             className="page-number"
           >
-            {number}
+            <div className={number === current ? "currentPage" : ""}>
+              {number}
+            </div>
           </li>
         ))}
         <li onClick={() => paginate(current === last ? last : current + 1)}>

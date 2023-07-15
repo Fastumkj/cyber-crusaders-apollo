@@ -1,7 +1,7 @@
 .profilePage {
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  height: 72vh;
   background-image: url(https://media.istockphoto.com/id/1158734314/video/abstract-background.jpg?s=640x640&k=20&c=Yj9WUFCh4frKNkG6H1tvVL0EGz1bnVUkLSPrgVEIRxo=) !important;
 }
 
@@ -23,7 +23,11 @@
 
 .profilePage h1 {
   font-size: 30px;
-  background-color: black;
+}
+
+.wishlistbackground h2 {
+  margin-top: -30px;
+  margin-bottom: 30px;
 }
 
 .profilePage img {
@@ -31,6 +35,10 @@
   width: 100px;
   border-radius: 50%;
   object-fit: fill;
+}
+
+.profilepage-name img {
+  overflow: visible;
 }
 
 .profilepage-name h2 {
@@ -114,10 +122,17 @@
 }
 
 .profile-wishList {
+  border-style: solid;
+  padding-left: 10px;
+  border-radius: 10px;
   background-color: black;
+  background-image: url("https://wallpaper.dog/large/5492455.jpg");
+  background-repeat: no-repeat;
+  background-position: 400px 0px;
   margin-left: -10px;
   margin-top: -30px;
-  width: 75vw;
+  width: 63.5vw;
   overflow-y: auto;
-  height: calc(100vh - 200px);
+  height: 70vh;
+  overflow-x: hidden;
 }

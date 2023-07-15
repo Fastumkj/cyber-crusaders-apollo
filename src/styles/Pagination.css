@@ -18,3 +18,7 @@
   top: 3px;
   text-shadow: none;
 }
+
+.currentPage {
+  color: purple;
+}

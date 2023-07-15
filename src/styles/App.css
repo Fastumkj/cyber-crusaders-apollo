@@ -8,89 +8,21 @@
   background-size: cover;
   background-position: center;
 }
-.emailname {
-  font-size: 20px;
-  margin-left: 30px;
-  position: relative;
-  cursor: pointer; /* Add cursor style for hover effect */
-}
-
-.emailname::before {
-  content: "";
-  position: absolute;
-  width: calc(100% + 10px);
-  height: 2px;
-  bottom: -3%;
-  background-color: #51ff00;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease-in-out;
-}
-
-.emailname::after {
-  content: "";
-  position: absolute;
-  width: calc(100% + 10px);
-  height: 2px;
-  bottom: -3%;
-  background-color: #c8ff00;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s ease-in-out;
-}
-
-.emailname:hover::before,
-.emailname:hover::after {
-  transform: scaleX(1);
-}
-
-.user-container {
-  display: flex;
-  align-items: center;
-}
-
-.Profile {
-  font-size: 16px;
-  margin-top: 10px;
-  margin-left: 30px;
-  color: #fff;
-  background-color: #b0c300;
-  border-radius: 5px;
-  padding: 3px;
-  box-shadow: 0 1px 3px #ccc;
-  transition: 0.3s;
-}
-
-.logout-button {
-  margin-left: 30px;
-  color: white;
-  border-color: transparent;
-  border-radius: 5px;
-  background-color: rgb(35, 189, 35);
-  transition: background-color 0.3s, text-decoration 0.3s;
-}
-
-.logout-button:hover {
-  cursor: pointer;
-  background-color: rgb(50, 205, 50);
-  text-decoration: underline;
-  color: #0026ff;
-}
-
-/*.logo {
-  margin-top: 50px;
-  align-items: top;
-  position: relative;
-  flex-direction: column;
-}*/
 
 .body-container {
   display: flex;
+  width: 98.9vw;
 }
 
 .wrapper {
   position: absolute;
   top: 180px;
+}
+
+.filter {
+  margin-bottom: 10px;
+  margin-top: -30px;
+  margin-left: 30px;
 }
 
 .product-container {
@@ -103,9 +35,13 @@
   justify-content: flex-start;
 }
 
+.filterlist {
+  display: flex;
+  justify-content: flex-start;
+}
 .product-container img {
   width: 100%;
-  height: auto;
+  height: 250px;
 }
 
 .pagination {
@@ -120,6 +56,17 @@
 
 .footer {
   margin-top: -90px;
+  height: 300px;
+  width: 98.9vw;
+}
+
+.noShow {
+  display: none;
+}
+
+.empty p {
+  font-size: 65px;
+  margin-left: 33vw;
 }
 
 .footer-profile {
@@ -134,6 +81,12 @@
   display: grid;
   gap: 35px;
   margin-top: 100px;
+}
+
+.footer-list {
+  margin-left: 278px;
+  width: 180px;
+  height: 30vh;
 }
 
 .social-media {
@@ -176,8 +129,8 @@ a:hover .fa-telegram {
   width: 200px;
   height: 200px;
   overflow: hidden;
-  padding-right: 20px;
   border-radius: 100%;
+  margin-left: -50px;
 }
 
 .footer-list-img img {

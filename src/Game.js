@@ -19,6 +19,7 @@ import { Link } from "react-router-dom";
 import Comment from "./Comment.js";
 import CommentData from "./CommentData.js";
 import Comments from "./Comments";
+import NavBar from "./NavBar.js";
 
 const Game = () => {
   const location = useLocation();
@@ -191,33 +192,22 @@ const Game = () => {
   }
 
   return (
-    <div className="game">
-      <div className="gameBackground"></div>
-      <header>
-        <div className="nav-container-game">
-          <div className="logo">
-            <Link to="/home" className="gamecc">
-              CyberCrusaders
-            </Link>
-            <Link to="/Profile" className="Profile">
-              {" "}
-              Profile{" "}
-            </Link>
-          </div>
+    <>
+      <NavBar></NavBar>
+
+      <div className="game">
+        <div className="gameBackground"></div>
+        <div class="tab">
+          <button
+            class="tablinks"
+            onClick={() => {
+              setDisplay(true);
+              window.history.back();
+            }}
+          >
+            Go Back
+          </button>
         </div>
-      </header>
-      <div class="tab">
-        <button class="tablinks" onClick={() => {
-          setDisplay(true);
-          window.history.back();
-        }}>
-          Go Back
-        </button>
-        <button class="tablinks" onClick={() => setDisplay(false)}>
-          Comment
-        </button>
-      </div>
-      <div className={display ? "show" : "hidden"}>
         <div className="gameDescription">
           <img
             src={imageUrl ? imageUrl : icon}
@@ -255,20 +245,26 @@ const Game = () => {
             ) : (
               <p>No known information available.</p>
             )}
-            <button onClick={addToWishlist} style={{ backgroundColor: isAdded ? "black" : isInWishList ? "red" : "green" }}>
-              {isAdded ? "Adding..." : (isInWishList ? "Remove from Wish List" : "Add to Wish List")}
+            <button
+              onClick={addToWishlist}
+              style={{
+                backgroundColor: isAdded
+                  ? "black"
+                  : isInWishList
+                  ? "red"
+                  : "green",
+              }}
+            >
+              {isAdded
+                ? "Adding..."
+                : isInWishList
+                ? "Remove from Wish List"
+                : "Add to Wish List"}
             </button>
           </div>
         </div>
-      </div>
 
-      <div className={display ? "hidden" : "show"}>
         <div className="gamecomment">
-          <img
-            src={imageUrl ? imageUrl : icon}
-            alt="Product 1"
-            className="coverart"
-          />
           <div className="commentsection">
             <h1> Comments </h1>
             <Comment onSubmit={onSubmit} photoURL={photoURL}></Comment>
@@ -282,7 +278,7 @@ const Game = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
