@@ -9,6 +9,7 @@
   flex-direction: column;
   align-items: flex-start;
   position: relative;
+  margin-top: -150px;
 }
 
 .nav-container-game {
@@ -34,7 +35,7 @@
   background-color: rgb(0, 0, 0);
   position: absolute;
   top: 180px;
-  left: 25px;
+  left: 115px;
   z-index: 1;
   border: none;
   cursor: pointer;
@@ -60,14 +61,11 @@
   margin-right: 6px;
 }
 
-
-.hidden {
-  display: none;
-}
 .gameDescription img {
-  margin-top: 20px;
-  margin-left: -200px;
+  margin-left: 20px;
+  margin-top: 25px;
   height: 400px;
+  width: 400px;
 }
 
 .gameDescription {
@@ -106,42 +104,33 @@
 }
 
 .gameInfo {
-  margin-left: -200px;
-  margin-top: 25px;
-  width: 115.5vw;
-  overflow-y: auto;
+  margin-left: 30px;
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .gameDescription button {
-  background-color: black;
+  width: 150px;
 }
 
 .gamecomment {
   display: flex;
-  margin-top: 175px;
-  width: 90vw;
-  height: 65vh;
-  margin-left: 100px;
-  border-style: solid;
-  border-width: 4px;
-  border-color: white;
-  background-image: url("https://user-images.githubusercontent.com/26748614/96337246-f14d4580-1085-11eb-8793-a86d929e034d.jpg");
-  background-image: cover;
-  border-radius: 20px;
 }
 
 .gamecomment .coverart {
   margin-top: 20px;
   height: 400px;
-  margin-left: -500px;
 }
 
 .gamecomment .commentsection {
-  margin-left: -500px;
+  margin-left: 250px;
   margin-top: 20px;
-  overflow-y: auto;
 }
 
-.gamecomment .others {
-  margin-left: 10px;
+.gamecomment .other {
+  margin-bottom: 10px;
 }

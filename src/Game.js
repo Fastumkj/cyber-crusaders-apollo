@@ -265,11 +265,6 @@ const Game = () => {
         </div>
 
         <div className="gamecomment">
-          <img
-            src={imageUrl ? imageUrl : icon}
-            alt="Product 1"
-            className="coverart"
-          />
           <div className="commentsection">
             <h1> Comments </h1>
             <Comment onSubmit={onSubmit} photoURL={photoURL}></Comment>
