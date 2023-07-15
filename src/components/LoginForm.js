@@ -6,12 +6,8 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from "../utils/firebase.js";
 import ReCAPTCHA from "react-google-recaptcha";
 import formbackground from '../assets/formbackground.jpg';
+
 import { color } from 'framer-motion';
-import "../styles/Stars.css";
-import StarfieldAnimation from "react-starfield-animation";
-
-
-
 const catchlines = ['Welcome back!', 'Ready to explore?', 'Let the adventure begin!', 'Unleash your inner astronaut.', 'Start your journey!', 'Ignite your interstellar adventure!'];
 
 const LoginForm = ({ onLogin, isLoggedIn }) => {
