@@ -6,6 +6,7 @@ import "./styles/NavBar.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useNavigate, Link } from "react-router-dom";
 import { Autocomplete, TextField, InputAdornment } from "@mui/material";
+import icon from "./assets/icon.jpg";
 
 const NavBar = ({ gameList }) => {
   const [name, setName] = useState("guest");
@@ -71,10 +72,10 @@ const NavBar = ({ gameList }) => {
             getOptionLabel={(option) => option.name}
             sx={{ width: 300 }}
             renderOption={(props, option) => {
-              const {
-                name,
-                cover: { image_id: photoURL },
-              } = option;
+              const { name, cover } = option;
+
+              const photoURL =
+                cover && cover.image_id ? displayPhoto(cover.image_id) : icon;
 
               return (
                 <div
@@ -83,7 +84,7 @@ const NavBar = ({ gameList }) => {
                     display: "flex",
                     alignItems: "center",
                     gap: "8px",
-                    height: "80px",
+                    height: "100px",
                   }}
                   onClick={() =>
                     navigate(`/Game/${option.id}`, {
@@ -92,9 +93,14 @@ const NavBar = ({ gameList }) => {
                   }
                 >
                   <img
-                    src={displayPhoto(photoURL)}
+                    src={photoURL}
                     alt="coverart"
-                    style={{ height: "100px", width: "50px", flexShrink: 0 }}
+                    style={{
+                      height: "90px",
+                      width: "80px",
+                      flexShrink: 0,
+                      marginBottom: "5px",
+                    }}
                   />
                   <span style={{ color: "black" }}>{name}</span>
                 </div>
