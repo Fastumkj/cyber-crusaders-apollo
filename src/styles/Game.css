@@ -9,7 +9,7 @@
   flex-direction: column;
   align-items: flex-start;
   position: relative;
-  margin-top: -150px;
+  top: -150px;
 }
 
 .nav-container-game {
