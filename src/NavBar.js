@@ -141,15 +141,15 @@ const NavBar = ({ gameList }) => {
           <div className="dropdown">
             <Dropdown>
               <Dropdown.Toggle data-bs-theme="dark" className="bs-button">
-                me
+                Profile
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Header> Hi, {name} </Dropdown.Header>
                 <Dropdown.Divider></Dropdown.Divider>
                 <Dropdown.Item onClick={() => navigate("/Profile")}>
-                  my profile
+                  My Account
                 </Dropdown.Item>
-                <Dropdown.Item onClick={handleLogout}>log out</Dropdown.Item>
+                <Dropdown.Item onClick={handleLogout}>Log Out</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </div>

@@ -7,8 +7,8 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../utils/firebase.js";
 import ReCAPTCHA from "react-google-recaptcha";
 import formbackground from "../assets/formbackground.jpg";
-
 import { color } from "framer-motion";
+
 const catchlines = [
   "Welcome back!",
   "Ready to explore?",
@@ -93,6 +93,7 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
       <div
         className="background-container"
         style={{
+          position: "relative",
           width: "100%",
           minHeight: "100vh",
           backgroundImage: `url(${formbackground})`,
@@ -107,7 +108,7 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
             top: 0,
             left: 0,
             width: "50%",
-            minHeight: "100vh",
+            height: "100%",
             backgroundColor: "white",
           }}
         ></div>
