@@ -117,6 +117,7 @@ const Profile = () => {
                 src={plus}
                 alt="add"
                 className="add"
+                ref={inputRef}
                 onClick={() => inputRef.current.click()}
               />
               <input
@@ -129,7 +130,7 @@ const Profile = () => {
               <div className="profilepage-name">
                 {editingName ? (
                   <>
-                    <h2> hello, </h2>
+                    <h2> Hello, </h2>
                     <input
                       type="text"
                       value={newName}
