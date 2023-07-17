@@ -63,9 +63,9 @@
 
 .gameDescription img {
   margin-left: 20px;
-  margin-top: 25px;
-  height: 400px;
-  width: 400px;
+  margin-top: 55px;
+  height: 380px;
+  width: 380px;
 }
 
 .gameDescription {
@@ -111,10 +111,6 @@
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: space-evenly;
-}
-
-.gameDescription button {
-  width: 150px;
 }
 
 .gamecomment {

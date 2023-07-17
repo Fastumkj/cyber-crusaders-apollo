@@ -28,7 +28,6 @@
     "react-google-recaptcha": "^3.1.0",
     "react-router-dom": "^6.12.1",
     "react-scripts": "^5.0.1",
-    "react-starfield-animation": "^1.0.1",
     "react-three-fiber": "^6.0.13",
     "starfield": "^0.0.1",
     "three": "^0.154.0",

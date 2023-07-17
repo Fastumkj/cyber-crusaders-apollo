@@ -15,11 +15,11 @@ import {
 } from "firebase/firestore";
 import "./styles/Game.css";
 import icon from "./assets/icon.jpg";
-import { Link } from "react-router-dom";
 import Comment from "./Comment.js";
 import CommentData from "./CommentData.js";
 import Comments from "./Comments";
 import NavBar from "./NavBar.js";
+import { Button } from "react-bootstrap";
 
 const Game = () => {
   const location = useLocation();
@@ -83,11 +83,27 @@ const Game = () => {
       }
     };
 
+    const checkWishlist = async () => {
+      const currentUser = auth.currentUser.uid;
+
+      var dbRef = collection(db, currentUser);
+      const gameQuery = query(
+        dbRef,
+        where("gameDetails.id", "==", gameDetails.id)
+      );
+
+      const querySnapshot = await getDocs(gameQuery);
+      if (!querySnapshot.empty) {
+        setIsInWishList(true);
+      }
+    };
+
     fetchProfilePic();
     fetchUserName();
     fetchComments();
+    checkWishlist();
     setLoading(false);
-  }, [gameDetails.id]);
+  }, []);
 
   let current = comments.length;
 
@@ -198,7 +214,8 @@ const Game = () => {
       <div className="game">
         <div className="gameBackground"></div>
         <div class="tab">
-          <button
+          <Button
+            variant="primary"
             class="tablinks"
             onClick={() => {
               setDisplay(true);
@@ -206,7 +223,7 @@ const Game = () => {
             }}
           >
             Go Back
-          </button>
+          </Button>
         </div>
         <div className="gameDescription">
           <img
@@ -245,9 +262,10 @@ const Game = () => {
             ) : (
               <p>No known information available.</p>
             )}
-            <button
+            <Button
               onClick={addToWishlist}
               style={{
+                width: "200px",
                 backgroundColor: isAdded
                   ? "black"
                   : isInWishList
@@ -260,7 +278,7 @@ const Game = () => {
                 : isInWishList
                 ? "Remove from Wish List"
                 : "Add to Wish List"}
-            </button>
+            </Button>
           </div>
         </div>
 

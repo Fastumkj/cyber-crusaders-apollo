@@ -144,6 +144,8 @@ const NavBar = ({ gameList }) => {
                 me
               </Dropdown.Toggle>
               <Dropdown.Menu>
+                <Dropdown.Header> Hi, {name} </Dropdown.Header>
+                <Dropdown.Divider></Dropdown.Divider>
                 <Dropdown.Item onClick={() => navigate("/Profile")}>
                   my profile
                 </Dropdown.Item>

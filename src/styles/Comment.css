@@ -1,27 +1,15 @@
 .comment-form {
   display: flex;
-  flex-wrap: wrap;
   align-items: flex-start;
+  width: 60px + 60vw;
 }
 
 .comment-form img {
   object-fit: cover;
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   margin-right: 5px;
-}
-
-.comment-form textarea {
-  width: 60vw;
-  margin-bottom: 10px;
-  resize: vertical;
-  color: black;
-}
-
-.comment-form-textarea {
-  width: 500px;
-  height: 100px;
 }
 
 .comment-form button {
@@ -29,10 +17,18 @@
   background-color: black;
 }
 
+.mb-3 {
+  width: 60vw;
+}
+
+.custom-floating-label {
+  margin-bottom: 0 !important;
+}
+
 .comment-form button:hover {
   cursor: pointer;
 }
 
 .comment-form button:last-child {
-  margin-right: 0;
+  margin-left: 5px;
 }
