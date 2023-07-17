@@ -12,7 +12,7 @@ import { GameListContext } from "./GameListProvider.js";
 import NavBar from "./NavBar.js";
 import { useNavigate } from "react-router-dom";
 
-const Profile = () => {
+const Profile = ({ setIsLoggedIn }) => {
   const [list, setList] = useState([]);
   const [editingName, setEditingName] = useState(false);
   const [newName, setNewName] = useState("");
@@ -102,7 +102,7 @@ const Profile = () => {
 
   return (
     <>
-      <NavBar gameList={gameList} />
+      <NavBar gameList={gameList} setIsLoggedIn={setIsLoggedIn} />
       <div className="profilePage">
         <div className="nav-container-profile">
           <div className="profile-config">

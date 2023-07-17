@@ -14,7 +14,7 @@ import { GameListContext } from "./GameListProvider";
 import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
 
-const App = () => {
+const App = ({ setIsLoggedIn }) => {
   const { gameList, setGameList } = useContext(GameListContext);
   const [currentPage, setCurrent] = useState(1);
   const [original, setOriginal] = useState([]);
@@ -167,7 +167,7 @@ const App = () => {
 
   return (
     <>
-      <NavBar gameList={gameList}></NavBar>
+      <NavBar gameList={gameList} setIsLoggedIn={setIsLoggedIn}></NavBar>
       <div className="wrapper">
         <div className="filterlist">
           <Dropdown>
@@ -432,15 +432,17 @@ const App = () => {
               <div className="footer-list-img">
                 <img src={joystick} alt="logo" />
               </div>
-            <div className="footer-list">
-              <div className="footer-list-desc">
-                <p className="title footer-list-title has-after">About Us</p>
-                <p style={{ maxWidth: '300px'}}>
-                  Welcome to Cyber Crusaders! Our team has worked tirelessly to create a one-stop gaming platform that caters to all your gaming needs.
-                  Cyber Crusaders makes it easy to find relevant game information across different platforms and genres.
-                </p>
+              <div className="footer-list">
+                <div className="footer-list-desc">
+                  <p className="title footer-list-title has-after">About Us</p>
+                  <p style={{ maxWidth: "300px" }}>
+                    Welcome to Cyber Crusaders! Our team has worked tirelessly
+                    to create a one-stop gaming platform that caters to all your
+                    gaming needs. Cyber Crusaders makes it easy to find relevant
+                    game information across different platforms and genres.
+                  </p>
+                </div>
               </div>
-            </div>
               <div className="footer-list">
                 <p className="title footer-list-title has-after">Contact Us</p>
                 <div className="contact-item">
