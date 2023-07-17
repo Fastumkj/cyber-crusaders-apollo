@@ -58,7 +58,7 @@ const NavBar = ({ gameList }) => {
 
   return (
     <div className="navbar">
-      <header>
+      <header className="navbar-fixed">
         <div className="navbar-logo">
           <Link to="./home" className="navbar-cc">
             CyberCrusaders

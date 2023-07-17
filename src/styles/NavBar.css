@@ -1,16 +1,23 @@
 header {
   display: flex;
-  width: 100vw;
   justify-content: space-between;
   align-items: self-start;
 }
 
 .navbar {
+  padding: 0;
+  position: fixed;
+  justify-content: space-between;
+  align-items: self-start;
   z-index: 1000;
-  height: 25vh;
-  background-image: url(https://media.istockphoto.com/id/1158734314/video/abstract-background.jpg?s=640x640&k=20&c=Yj9WUFCh4frKNkG6H1tvVL0EGz1bnVUkLSPrgVEIRxo=) !important;
 }
 
+.navbar-fixed {
+  display: flex;
+  height: 25vh;
+  width: 100vw;
+  background-image: url(https://media.istockphoto.com/id/1158734314/video/abstract-background.jpg?s=640x640&k=20&c=Yj9WUFCh4frKNkG6H1tvVL0EGz1bnVUkLSPrgVEIRxo=) !important;
+}
 .NavBar-pp {
   height: 120px;
   width: 120px;
