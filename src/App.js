@@ -31,7 +31,8 @@ const App = () => {
 
   const navigate = useNavigate();
 
-  const handleEmailSubscription = () => {
+  const handleEmailSubscription = (e) => {
+    e.preventDefault();
     setEmailSubscribed(true);
   };
 
@@ -495,7 +496,7 @@ const App = () => {
                       placeholder="Your Email"
                       autocomplete="off"
                       className="input-field"
-                      value={user.email}
+                      value={user?.email}
                     />
                     <br />
                     <button type="submit" className="btn" data-btn>
