@@ -28,7 +28,7 @@ const WishListCard = (game) => {
   const remove = async () => {
     var db_ref = collection(db, auth.currentUser.uid);
     let batch = writeBatch(db);
-    const game_ref = query(db_ref, where("gameDetails.id", "==", game.id));
+    const game_ref = query(db_ref, where("gameDetails.id", "==", game.game.id));
     const querySnapshot = await getDocs(game_ref);
 
     querySnapshot.forEach((doc) => {
