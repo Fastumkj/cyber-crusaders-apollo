@@ -50,10 +50,6 @@
   margin-top: 10px;
 }
 
-/*-----------------------*/
-/*-------FOOTER----------*/
-/*-----------------------*/
-
 .footer {
   margin-top: -90px;
   margin-left: 50px;
@@ -226,13 +222,10 @@ a:hover .fa-telegram {
   grid-template-columns: repeat(4, 1fr);
 }
 
-/*.footer-top .container { grid-template-columns: 1fr 0.5fr 0.5fr 1fr; }*/
-
 .footer .logo img {
   width: 170px;
 }
 
-/* for login-form-container */
 .login-form-container {
   background-color: transparent;
 }

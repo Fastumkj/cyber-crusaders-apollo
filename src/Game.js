@@ -234,6 +234,8 @@ const Game = ({ setIsLoggedIn }) => {
             className="coverart"
           />
           <div className="gameInfo">
+            <h1> Title Name </h1>
+            <h3> {gameDetails.name}</h3>
             <h1>Summary</h1>
             <h3>{gameDetails.summary}</h3>
             <h1>Release Dates</h1>
