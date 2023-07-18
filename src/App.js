@@ -37,27 +37,6 @@ const App = ({ setIsLoggedIn }) => {
   };
 
   useEffect(() => {
-    const fetchProfilePic = async () => {
-      const storage = getStorage();
-      const pic = ref(storage, "images/" + auth.currentUser.uid);
-      try {
-        const url = await getDownloadURL(pic);
-        setPhoto(url);
-      } catch (error) {
-        console.log("No profile pic found");
-      }
-    };
-
-    const fetchUserName = async () => {
-      const username = collection(db, "user");
-      const snapshot = await getDocs(username);
-      snapshot.forEach((doc) => {
-        if (doc.id === auth.currentUser.uid) {
-          setName(doc.data().name);
-        }
-      });
-    };
-
     const fetchInfo = async () => {
       var myHeaders = new Headers();
       myHeaders.append("x-api-key", "e0kFMFio5QaHanAseqBII1Shr66hKS9n7uDXJHvh");
@@ -95,6 +74,27 @@ const App = ({ setIsLoggedIn }) => {
     fetchProfilePic();
     fetchUserName();
   }, []);
+
+  const fetchProfilePic = async () => {
+    const storage = getStorage();
+    const pic = ref(storage, "images/" + auth.currentUser.uid);
+    try {
+      const url = await getDownloadURL(pic);
+      setPhoto(url);
+    } catch (error) {
+      console.log("No profile pic found");
+    }
+  };
+
+  const fetchUserName = async () => {
+    const username = collection(db, "user");
+    const snapshot = await getDocs(username);
+    snapshot.forEach((doc) => {
+      if (doc.id === auth.currentUser.uid) {
+        setName(doc.data().name);
+      }
+    });
+  };
 
   useEffect(() => {
     setCurrent(1);
