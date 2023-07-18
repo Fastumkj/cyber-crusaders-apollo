@@ -57,7 +57,12 @@ const WishListCard = (game) => {
 
   return (
     <div className="wishListCard">
-      <img src={imageUrl} onClick={handleClick} alt="game-art"></img>
+      <img
+        src={imageUrl}
+        onClick={handleClick}
+        alt="game-art"
+        style={{ cursor: "pointer" }}
+      ></img>
       <div className="cardDetails">
         <h1> {game.game.name} </h1>
         <h3> {convert(game.game.first_release_date)} </h3>

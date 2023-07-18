@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { auth, db } from "./utils/firebase.js";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
@@ -20,8 +20,9 @@ import CommentData from "./CommentData.js";
 import Comments from "./Comments";
 import NavBar from "./NavBar.js";
 import { Button } from "react-bootstrap";
+import { GameListContext } from "./GameListProvider.js";
 
-const Game = () => {
+const Game = ({ setIsLoggedIn }) => {
   const location = useLocation();
   const gameDetails = location.state?.gameDetails;
   const [name, setName] = useState("Guest");
@@ -33,6 +34,7 @@ const Game = () => {
   const [display, setDisplay] = useState(true);
   const [isAdded, setIsAdded] = useState(false);
   const [isInWishList, setIsInWishList] = useState(false);
+  const { gameList } = useContext(GameListContext);
 
   useEffect(() => {
     const fetchProfilePic = async () => {
@@ -209,7 +211,7 @@ const Game = () => {
 
   return (
     <>
-      <NavBar></NavBar>
+      <NavBar gameList={gameList} setIsLoggedIn={setIsLoggedIn}></NavBar>
 
       <div className="game">
         <div className="gameBackground"></div>
@@ -232,6 +234,8 @@ const Game = () => {
             className="coverart"
           />
           <div className="gameInfo">
+            <h1> Title Name </h1>
+            <h3> {gameDetails.name}</h3>
             <h1>Summary</h1>
             <h3>{gameDetails.summary}</h3>
             <h1>Release Dates</h1>

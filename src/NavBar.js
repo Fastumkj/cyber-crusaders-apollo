@@ -8,38 +8,56 @@ import { useNavigate, Link } from "react-router-dom";
 import { Autocomplete, TextField, InputAdornment } from "@mui/material";
 import icon from "./assets/icon.jpg";
 
-const NavBar = ({ gameList }) => {
-  const [name, setName] = useState("guest");
+const NavBar = ({ gameList, setIsLoggedIn, photoURL, newName }) => {
+  const [name, setName] = useState(newName || "guest");
   const [photo, setPhoto] = useState(
-    "https://st.depositphotos.com/2101611/4338/v/600/depositphotos_43381243-stock-illustration-male-avatar-profile-picture.jpg"
+    photoURL ||
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfv6MLV9O02vHcqwZkaz4AjSunSuSjL-u_2g&usqp=CAU"
   );
 
   let navigate = useNavigate();
 
   useEffect(() => {
-    const fetchProfilePic = async () => {
-      const storage = getStorage();
-      const pic = ref(storage, "images/" + auth.currentUser.uid);
-      try {
-        const url = await getDownloadURL(pic);
-        setPhoto(url);
-      } catch (error) {
-        console.log("No profile pic found");
-      }
-    };
-
-    const fetchUserName = async () => {
-      const username = collection(db, "user");
-      const snapshot = await getDocs(username);
-      snapshot.forEach((doc) => {
-        if (doc.id === auth.currentUser.uid) {
-          setName(doc.data().name);
+    if (auth.currentUser) {
+      const fetchProfilePic = async () => {
+        const storage = getStorage();
+        const pic = ref(storage, "images/" + auth.currentUser.uid);
+        try {
+          const url = await getDownloadURL(pic);
+          setPhoto(url);
+        } catch (error) {
+          console.log("No profile pic found");
         }
-      });
-    };
-    fetchProfilePic();
-    fetchUserName();
-  }, [photo]);
+      };
+
+      const fetchUserName = async () => {
+        const username = collection(db, "user");
+        const snapshot = await getDocs(username);
+        snapshot.forEach((doc) => {
+          if (doc.id === auth.currentUser.uid) {
+            setName(doc.data().name);
+          }
+        });
+      };
+      if (photoURL) {
+        setPhoto(photoURL);
+      } else {
+        fetchProfilePic();
+      }
+      fetchUserName();
+    }
+  }, []);
+
+  useEffect(() => {
+    setPhoto(
+      photoURL ||
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfv6MLV9O02vHcqwZkaz4AjSunSuSjL-u_2g&usqp=CAU"
+    );
+  }, [photoURL]);
+
+  useEffect(() => {
+    setName(newName || "Guest");
+  }, [newName]);
 
   const displayPhoto = (photo) => {
     if (photo) {
@@ -53,7 +71,8 @@ const NavBar = ({ gameList }) => {
 
   const handleLogout = () => {
     auth.signOut();
-    window.location.reload();
+    setIsLoggedIn(false);
+    navigate("/home");
   };
 
   return (

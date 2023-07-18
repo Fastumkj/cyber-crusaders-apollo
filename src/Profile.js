@@ -12,14 +12,14 @@ import { GameListContext } from "./GameListProvider.js";
 import NavBar from "./NavBar.js";
 import { useNavigate } from "react-router-dom";
 
-const Profile = () => {
+const Profile = ({ setIsLoggedIn }) => {
   const [list, setList] = useState([]);
   const [editingName, setEditingName] = useState(false);
   const [newName, setNewName] = useState("");
   const [name, setName] = useState("Guest");
   const [loading, setLoading] = useState(false);
   const [photoURL, setPhotoURL] = useState(
-    "https://st.depositphotos.com/2101611/4338/v/600/depositphotos_43381243-stock-illustration-male-avatar-profile-picture.jpg"
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfv6MLV9O02vHcqwZkaz4AjSunSuSjL-u_2g&usqp=CAU"
   );
   const inputRef = useRef(null);
   const { gameList } = useContext(GameListContext);
@@ -102,7 +102,12 @@ const Profile = () => {
 
   return (
     <>
-      <NavBar gameList={gameList} />
+      <NavBar
+        gameList={gameList}
+        setIsLoggedIn={setIsLoggedIn}
+        photoURL={photoURL}
+        newName={name}
+      />
       <div className="profilePage">
         <div className="nav-container-profile">
           <div className="profile-config">
@@ -130,7 +135,7 @@ const Profile = () => {
               <div className="profilepage-name">
                 {editingName ? (
                   <>
-                    <h2> Hello, </h2>
+                    <h2> hello, </h2>
                     <input
                       type="text"
                       value={newName}

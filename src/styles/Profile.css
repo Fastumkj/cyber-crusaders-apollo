@@ -135,3 +135,7 @@
   height: 450px;
   overflow-x: hidden;
 }
+
+.wishListCard:first-child {
+  margin-top: 10px;
+}

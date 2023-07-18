@@ -26,15 +26,21 @@ const Navigation = () => {
         element={
           isLoggedIn ? (
             <>
-              <App />
+              <App setIsLoggedIn={setIsLoggedIn} />
             </>
           ) : (
             <Navigate to="/login" />
           )
         }
       />
-      <Route path="/Profile" element={<Profile />}></Route>
-      <Route path="/Game/:id" element={<Game from="/App" />} />
+      <Route
+        path="/Profile"
+        element={<Profile setIsLoggedIn={setIsLoggedIn} />}
+      ></Route>
+      <Route
+        path="/Game/:id"
+        element={<Game from="/App" setIsLoggedIn={setIsLoggedIn} />}
+      />
       <Route path="/*" element={<Navigate to="/login" />} />{" "}
       {/* Add this route */}
     </Routes>
