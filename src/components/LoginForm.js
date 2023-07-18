@@ -24,7 +24,8 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
   const [recaptchaVerified, setRecaptchaVerified] = useState(false);
   const recaptchaRef = React.createRef();
   const [catchline, setCatchline] = useState("");
-  const [isLoggingIn, setIsLoggingIn] = useState(false); // New state variable to track login process
+  const [isLoggingIn, setIsLoggingIn] = useState(false); 
+  const [loginAttempts, setLoginAttempts] = useState(1);
 
   useEffect(() => {
     const randomCatchline =
@@ -57,6 +58,8 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
 
   const handleLogin = async (email, password) => {
     try {
+      setLoginAttempts((prevAttempts) => prevAttempts + 1);
+
       // Call Firebase signInWithEmailAndPassword method
       await signInWithEmailAndPassword(auth, email, password);
 
@@ -67,7 +70,14 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
       // Redirect or perform other actions after successful login
     } catch (error) {
       console.log("Login error:", error);
-    }
+
+      const remainingAttempts = 5 - loginAttempts;
+      if (remainingAttempts > 0) {
+        alert(`Invalid credentials! ${remainingAttempts} attempts left.`);
+      } else {
+        alert("Too many failed login attemps. Your account is temporarily locked. Try again in 1 hour.")
+      } 
+    } 
   };
 
   if (isLoggedIn) {
