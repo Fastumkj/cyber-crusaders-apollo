@@ -8,10 +8,11 @@ import { useNavigate, Link } from "react-router-dom";
 import { Autocomplete, TextField, InputAdornment } from "@mui/material";
 import icon from "./assets/icon.jpg";
 
-const NavBar = ({ gameList, setIsLoggedIn }) => {
-  const [name, setName] = useState("guest");
+const NavBar = ({ gameList, setIsLoggedIn, photoURL, newName }) => {
+  const [name, setName] = useState(newName || "guest");
   const [photo, setPhoto] = useState(
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfv6MLV9O02vHcqwZkaz4AjSunSuSjL-u_2g&usqp=CAU"
+    photoURL ||
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfv6MLV9O02vHcqwZkaz4AjSunSuSjL-u_2g&usqp=CAU"
   );
 
   let navigate = useNavigate();
@@ -19,7 +20,6 @@ const NavBar = ({ gameList, setIsLoggedIn }) => {
   useEffect(() => {
     if (auth.currentUser) {
       const fetchProfilePic = async () => {
-        console.log("test");
         const storage = getStorage();
         const pic = ref(storage, "images/" + auth.currentUser.uid);
         try {
@@ -39,11 +39,25 @@ const NavBar = ({ gameList, setIsLoggedIn }) => {
           }
         });
       };
-
-      fetchProfilePic();
+      if (photoURL) {
+        setPhoto(photoURL);
+      } else {
+        fetchProfilePic();
+      }
       fetchUserName();
     }
-  }, [photo]);
+  }, []);
+
+  useEffect(() => {
+    setPhoto(
+      photoURL ||
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfv6MLV9O02vHcqwZkaz4AjSunSuSjL-u_2g&usqp=CAU"
+    );
+  }, [photoURL]);
+
+  useEffect(() => {
+    setName(newName || "Guest");
+  }, [newName]);
 
   const displayPhoto = (photo) => {
     if (photo) {

@@ -102,7 +102,12 @@ const Profile = ({ setIsLoggedIn }) => {
 
   return (
     <>
-      <NavBar gameList={gameList} setIsLoggedIn={setIsLoggedIn} />
+      <NavBar
+        gameList={gameList}
+        setIsLoggedIn={setIsLoggedIn}
+        photoURL={photoURL}
+        newName={name}
+      />
       <div className="profilePage">
         <div className="nav-container-profile">
           <div className="profile-config">
@@ -130,7 +135,7 @@ const Profile = ({ setIsLoggedIn }) => {
               <div className="profilepage-name">
                 {editingName ? (
                   <>
-                    <h2> Hello, </h2>
+                    <h2> hello, </h2>
                     <input
                       type="text"
                       value={newName}
