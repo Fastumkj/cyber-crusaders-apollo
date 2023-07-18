@@ -6,6 +6,7 @@
 .wishListCard h1 {
   font-size: 25px;
   overflow-wrap: normal;
+  cursor: default;
 }
 
 .wishListCard h3 {
