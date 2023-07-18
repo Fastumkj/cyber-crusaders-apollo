@@ -19,7 +19,7 @@ const Profile = ({ setIsLoggedIn }) => {
   const [name, setName] = useState("Guest");
   const [loading, setLoading] = useState(false);
   const [photoURL, setPhotoURL] = useState(
-    "https://st.depositphotos.com/2101611/4338/v/600/depositphotos_43381243-stock-illustration-male-avatar-profile-picture.jpg"
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfv6MLV9O02vHcqwZkaz4AjSunSuSjL-u_2g&usqp=CAU"
   );
   const inputRef = useRef(null);
   const { gameList } = useContext(GameListContext);
