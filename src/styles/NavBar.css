@@ -1,13 +1,12 @@
 header {
   display: flex;
-  justify-content: space-between;
-  align-items: self-start;
+  justify-content: space-evenly;
 }
 
 .navbar {
   padding: 0;
   position: fixed;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: self-start;
   z-index: 1000;
 }
@@ -27,7 +26,7 @@ header {
 
 .navbar-cc {
   margin-top: 50px;
-  margin-left: 20px;
+  margin-right: 400px;
   font-size: 40px;
   text-align: center;
   text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6,
