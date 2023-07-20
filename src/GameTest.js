@@ -1,3 +1,5 @@
+// Testing using Jest
+
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import Comment from "./Comment";
