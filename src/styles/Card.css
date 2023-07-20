@@ -55,7 +55,7 @@ p {
 }
 
 .card-container:hover .product-img {
-  transform: scale(1.2);
+  transform: scale(1.2) translateY(-10px);
   transition: 1s;
 }
 
