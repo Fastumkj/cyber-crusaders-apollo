@@ -23,6 +23,7 @@
   margin-bottom: 10px;
   margin-top: -30px;
   margin-left: 30px;
+  margin-right: 3px;
 }
 
 .product-container {
@@ -37,7 +38,7 @@
 
 .filterlist {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
 }
 .product-container img {
   width: 100%;
@@ -228,4 +229,11 @@ a:hover .fa-telegram {
 
 .login-form-container {
   background-color: transparent;
+}
+
+.navbar-search {
+  margin-top: 5px;
+  color: white;
+  margin-bottom: 5px;
+  cursor: text;
 }

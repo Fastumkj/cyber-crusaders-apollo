@@ -48,13 +48,6 @@ header {
   display: flex;
 }
 
-.navbar-search {
-  margin-top: 50px;
-  color: white;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
 .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
   border: none;
   outline: none;

@@ -1,6 +1,6 @@
 import { auth, db, storage } from "./utils/firebase.js";
 import { collection, onSnapshot, setDoc, doc } from "firebase/firestore";
-import { useState, useEffect, useRef, useContext } from "react";
+import { useState, useEffect, useRef } from "react";
 import { updateProfile } from "firebase/auth";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import "./styles/Profile.css";
@@ -8,7 +8,6 @@ import edit from "./assets/edit.png";
 import plus from "./assets/plus.jpg";
 import pbackground from "./assets/profilebackground.jpg";
 import WishListCard from "./WishListCard";
-import { GameListContext } from "./GameListProvider.js";
 import NavBar from "./NavBar.js";
 import { useNavigate } from "react-router-dom";
 
@@ -22,7 +21,6 @@ const Profile = ({ setIsLoggedIn }) => {
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfv6MLV9O02vHcqwZkaz4AjSunSuSjL-u_2g&usqp=CAU"
   );
   const inputRef = useRef(null);
-  const { gameList } = useContext(GameListContext);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -103,7 +101,6 @@ const Profile = ({ setIsLoggedIn }) => {
   return (
     <>
       <NavBar
-        gameList={gameList}
         setIsLoggedIn={setIsLoggedIn}
         photoURL={photoURL}
         newName={name}
@@ -175,19 +172,32 @@ const Profile = ({ setIsLoggedIn }) => {
             <div className="wishlistbackground">
               <h2> Wish List </h2>
               <div className="profile-wishList">
-                <ul>
-                  {list.map((game) => {
-                    return (
-                      <li>
-                        {" "}
+                {list.length > 0 ? (
+                  <ul>
+                    {list.map((game) => (
+                      <li key={game.id}>
                         <WishListCard
                           className="wishListCard"
                           game={game.gameDetails}
                         />
                       </li>
-                    );
-                  })}
-                </ul>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="emptyWishList">
+                    No games in the wish list, click{" "}
+                    <span
+                      className="spacing"
+                      onClick={() => {
+                        navigate("/home");
+                      }}
+                    >
+                      {" "}
+                      here
+                    </span>{" "}
+                    to browse for more
+                  </p>
+                )}
               </div>
             </div>
           </div>

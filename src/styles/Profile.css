@@ -139,3 +139,20 @@
 .wishListCard:first-child {
   margin-top: 10px;
 }
+
+.emptyWishList {
+  cursor: default;
+  font-size: 30px;
+}
+
+.spacing {
+  margin-left: 8px;
+  margin-right: 8px;
+  text-decoration: underline;
+  cursor: pointer;
+  color: cyan;
+}
+
+.spacing:active {
+  color: purple;
+}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { auth, db } from "./utils/firebase.js";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
@@ -20,7 +20,6 @@ import CommentData from "./CommentData.js";
 import Comments from "./Comments";
 import NavBar from "./NavBar.js";
 import { Button } from "react-bootstrap";
-import { GameListContext } from "./GameListProvider.js";
 
 const Game = ({ setIsLoggedIn }) => {
   const location = useLocation();
@@ -34,7 +33,6 @@ const Game = ({ setIsLoggedIn }) => {
   const [display, setDisplay] = useState(true);
   const [isAdded, setIsAdded] = useState(false);
   const [isInWishList, setIsInWishList] = useState(false);
-  const { gameList } = useContext(GameListContext);
 
   useEffect(() => {
     const fetchProfilePic = async () => {
@@ -211,7 +209,7 @@ const Game = ({ setIsLoggedIn }) => {
 
   return (
     <>
-      <NavBar gameList={gameList} setIsLoggedIn={setIsLoggedIn}></NavBar>
+      <NavBar setIsLoggedIn={setIsLoggedIn}></NavBar>
 
       <div className="game">
         <div className="gameBackground"></div>

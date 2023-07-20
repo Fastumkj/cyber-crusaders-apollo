@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles/App.css";
 import joystick from "./assets/joystick.jpg";
@@ -10,12 +10,13 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "./utils/firebase";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { collection, getDocs } from "firebase/firestore";
-import { GameListContext } from "./GameListProvider";
 import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
+import { Autocomplete, TextField, InputAdornment } from "@mui/material";
+import icon from "./assets/icon.jpg";
 
 const App = ({ setIsLoggedIn }) => {
-  const { gameList, setGameList } = useContext(GameListContext);
+  const [gameList, setGameList] = useState([]);
   const [currentPage, setCurrent] = useState(1);
   const [original, setOriginal] = useState([]);
   const [genres, setGenres] = useState([]);
@@ -135,6 +136,16 @@ const App = ({ setIsLoggedIn }) => {
     setOriginal(filteredGames);
   }, [gameList, genres, platforms]);
 
+  const displayPhoto = (photo) => {
+    if (photo) {
+      return (
+        "https://images.igdb.com/igdb/image/upload/t_cover_big/" +
+        photo +
+        ".jpg"
+      );
+    }
+  };
+
   const handleGenresClick = (filter) => {
     if (genres.includes(filter)) {
       return;
@@ -171,7 +182,14 @@ const App = ({ setIsLoggedIn }) => {
       <div className="wrapper">
         <div className="filterlist">
           <Dropdown>
-            <Dropdown.Toggle id="dropdown-basic" className="filter">
+            <Dropdown.Toggle
+              id="dropdown-basic"
+              className="filter"
+              style={{
+                borderRadius: "10px 0 0 10px",
+                height: "35px",
+              }}
+            >
               Filter
             </Dropdown.Toggle>
 
@@ -183,6 +201,7 @@ const App = ({ setIsLoggedIn }) => {
                       fontWeight: "bold",
                       color: "black",
                       fontSize: "16px",
+                      borderRadius: "4 0 0 4",
                     }}
                   >
                     Platform
@@ -321,6 +340,89 @@ const App = ({ setIsLoggedIn }) => {
               </div>
             </Dropdown.Menu>
           </Dropdown>
+          <div className="navbar-search">
+            <Autocomplete
+              forcePopupIcon={false}
+              style={{
+                backgroundColor: "white",
+                borderRadius: "0 10px 10px 0",
+                marginLeft: "-5px",
+                color: "black",
+                width: "250px",
+              }}
+              options={gameList}
+              getOptionLabel={(option) => option.name}
+              sx={{ width: 250 }}
+              renderOption={(props, option) => {
+                const { name, cover } = option;
+
+                const photoURL =
+                  cover && cover.image_id ? displayPhoto(cover.image_id) : icon;
+
+                return (
+                  <div
+                    {...props}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+                      width: "250px",
+                    }}
+                    onClick={() =>
+                      navigate(`/Game/${option.id}`, {
+                        state: { gameDetails: option },
+                      })
+                    }
+                  >
+                    <img
+                      src={photoURL}
+                      alt="coverart"
+                      style={{
+                        height: "90px",
+                        width: "80px",
+                        flexShrink: 0,
+                        marginBottom: "5px",
+                      }}
+                    />
+                    <span style={{ color: "black" }}>{name}</span>
+                  </div>
+                );
+              }}
+              renderInput={(renderInputParams) => (
+                <div
+                  ref={renderInputParams.InputProps.ref}
+                  style={{
+                    alignItems: "center",
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "row",
+                    marginTop: "11.5px",
+                  }}
+                >
+                  <TextField
+                    onFocus={(event) => {
+                      event.target.select();
+                    }}
+                    style={{
+                      flex: 0.5,
+                      marginBottom: "-11px",
+                      marginTop: "-10px",
+                    }}
+                    variant="outlined"
+                    InputProps={{
+                      ...renderInputParams.InputProps,
+                    }}
+                    placeholder="Search"
+                    inputProps={{
+                      ...renderInputParams.inputProps,
+                    }}
+                    InputLabelProps={{ style: { display: "none" } }}
+                  />
+                </div>
+              )}
+            />
+          </div>
+
           {genres.map((filter) => (
             <Button
               className="button-x"

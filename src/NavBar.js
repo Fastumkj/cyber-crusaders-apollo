@@ -5,10 +5,8 @@ import { collection, getDocs } from "firebase/firestore";
 import "./styles/NavBar.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useNavigate, Link } from "react-router-dom";
-import { Autocomplete, TextField, InputAdornment } from "@mui/material";
-import icon from "./assets/icon.jpg";
 
-const NavBar = ({ gameList, setIsLoggedIn, photoURL, newName }) => {
+const NavBar = ({ setIsLoggedIn, photoURL, newName }) => {
   const [name, setName] = useState(newName || "guest");
   const [photo, setPhoto] = useState(
     photoURL ||
@@ -59,16 +57,6 @@ const NavBar = ({ gameList, setIsLoggedIn, photoURL, newName }) => {
     setName(newName || "Guest");
   }, [newName]);
 
-  const displayPhoto = (photo) => {
-    if (photo) {
-      return (
-        "https://images.igdb.com/igdb/image/upload/t_cover_big/" +
-        photo +
-        ".jpg"
-      );
-    }
-  };
-
   const handleLogout = () => {
     auth.signOut();
     setIsLoggedIn(false);
@@ -82,76 +70,6 @@ const NavBar = ({ gameList, setIsLoggedIn, photoURL, newName }) => {
           <Link to="./home" className="navbar-cc">
             CyberCrusaders
           </Link>
-        </div>
-
-        <div className="navbar-search">
-          <Autocomplete
-            style={{ backgroundColor: "white", color: "black" }}
-            options={gameList}
-            getOptionLabel={(option) => option.name}
-            sx={{ width: 300 }}
-            renderOption={(props, option) => {
-              const { name, cover } = option;
-
-              const photoURL =
-                cover && cover.image_id ? displayPhoto(cover.image_id) : icon;
-
-              return (
-                <div
-                  {...props}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    height: "100px",
-                  }}
-                  onClick={() =>
-                    navigate(`/Game/${option.id}`, {
-                      state: { gameDetails: option },
-                    })
-                  }
-                >
-                  <img
-                    src={photoURL}
-                    alt="coverart"
-                    style={{
-                      height: "90px",
-                      width: "80px",
-                      flexShrink: 0,
-                      marginBottom: "5px",
-                    }}
-                  />
-                  <span style={{ color: "black" }}>{name}</span>
-                </div>
-              );
-            }}
-            renderInput={(renderInputParams) => (
-              <div
-                ref={renderInputParams.InputProps.ref}
-                style={{
-                  alignItems: "center",
-                  width: "100%",
-                  display: "flex",
-                  flexDirection: "row",
-                }}
-              >
-                <TextField
-                  style={{ flex: 1 }}
-                  InputProps={{
-                    ...renderInputParams.InputProps,
-                    startAdornment: (
-                      <InputAdornment position="start"> </InputAdornment>
-                    ),
-                  }}
-                  placeholder="Search"
-                  inputProps={{
-                    ...renderInputParams.inputProps,
-                  }}
-                  InputLabelProps={{ style: { display: "none" } }}
-                />
-              </div>
-            )}
-          />
         </div>
 
         <div className="navbar-profile">
