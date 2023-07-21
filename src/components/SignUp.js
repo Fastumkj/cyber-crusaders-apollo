@@ -21,7 +21,6 @@ const SignUp = () => {
 
   const formik = useFormik({
     initialValues: {
-      name: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -74,6 +73,7 @@ const SignUp = () => {
           backgroundImage: `url(${formbackground})`,
           backgroundSize: 'cover',
           backgroundPosition: 'right',
+          overflow: "hidden",
         }}
       >
         <div
@@ -130,27 +130,6 @@ const SignUp = () => {
                   </h3>
 
                     <form onSubmit={formik.handleSubmit} style={{ background: 'transparent', border: 'none' }}></form>
-                        <div className="form-group" style={{ backgroundColor: 'transparent' }}>
-                        <label htmlFor="name" className="font-weight-regular" style={{ color:'black' }}>
-                            Name
-                        </label>
-                        <input
-                            type="text"
-                            name="name"
-                            className="form-control form-control-lg"
-                            placeholder = "Enter your name..."
-                            id="name"
-                            autoComplete="off"
-                            value={formik.values.name}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            maxLength={25}
-                        />
-                        {formik.touched.name && formik.errors.name && (
-                            <span className="text-danger font-weight-regular">{formik.errors.name}</span>
-                        )}
-                        </div>
-
                         <div className="form-outline mb-4">
                         <label htmlFor="email" className="font-weight-regular" style={{ color:'black' }}>
                             Email

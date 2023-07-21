@@ -108,7 +108,9 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
           minHeight: "100vh",
           backgroundImage: `url(${formbackground})`,
           backgroundSize: "cover",
+          backgroundPosition: "center center",
           backgroundPosition: "right",
+          overflow: "hidden",
         }}
       >
         <div
