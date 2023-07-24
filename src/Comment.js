@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./styles/Comment.css";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
+import TextareaAutosize from "@mui/base/TextareaAutosize";
 
 const Comment = ({ onSubmit, photoURL }) => {
   const [text, setText] = useState("");
@@ -23,13 +24,17 @@ const Comment = ({ onSubmit, photoURL }) => {
     <form className="comment-form" onSubmit={handleFormSubmit}>
       <img src={photoURL} alt="profile-pic" className="comment-pp" />
       <div>
-        <Form.Control
-          as="textarea"
-          value={text}
+        <TextareaAutosize
+          placeholder="Add a comment"
           onChange={(e) => setText(e.target.value)}
           onFocus={() => setIsTextareaActive(true)}
-          placeholder="Add a comment"
-          style={{ width: "60vw", height: "40px", marginBottom: "5px" }}
+          value={text}
+          style={{
+            borderRadius: "8px",
+            width: "60vw",
+            color: "black",
+            paddingLeft: "3px",
+          }}
         />
         {isTextareaActive && (
           <div>

@@ -11,12 +11,19 @@
 }
 
 .comment .commentText {
+  width: 60vw;
   margin-left: 64px;
   margin-bottom: 30px;
 }
 
+.comment p {
+  display: block;
+  word-wrap: break-word;
+}
+
 .comment {
   margin-top: 8px;
+  background-color: black;
 }
 
 .comment h3 {

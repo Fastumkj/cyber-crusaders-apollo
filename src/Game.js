@@ -33,6 +33,8 @@ const Game = ({ setIsLoggedIn }) => {
   const [display, setDisplay] = useState(true);
   const [isAdded, setIsAdded] = useState(false);
   const [isInWishList, setIsInWishList] = useState(false);
+  const [commentToDelete, setCommentToDelete] = useState(null);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
   useEffect(() => {
     const fetchProfilePic = async () => {
@@ -108,19 +110,28 @@ const Game = ({ setIsLoggedIn }) => {
   let current = comments.length;
 
   const handleDelete = async (commentID) => {
-    console.log(comments);
+    setCommentToDelete(commentID);
+    setShowConfirmationModal(true);
+  };
+
+  const confirmDelete = async () => {
     const list = comments.filter((a) => {
-      return a.index !== commentID;
+      return a.index !== commentToDelete;
     });
     setComments(list);
     var db_ref = collection(db, gameDetails.id.toString());
     let batch = writeBatch(db);
-    const comment_ref = query(db_ref, where("index", "==", commentID));
+    const comment_ref = query(db_ref, where("index", "==", commentToDelete));
     const querySnapshot = await getDocs(comment_ref);
     querySnapshot.forEach((doc) => {
       batch.delete(doc.ref);
     });
+    setShowConfirmationModal(false);
     return batch.commit();
+  };
+
+  const cancelDelete = () => {
+    setShowConfirmationModal(false);
   };
 
   const onSubmit = async (text, setText) => {
@@ -298,6 +309,18 @@ const Game = ({ setIsLoggedIn }) => {
           </div>
         </div>
       </div>
+
+      {showConfirmationModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>Confirm Deletion</h2>
+            <div className="modal-actions">
+              <Button onClick={confirmDelete}>Confirm</Button>
+              <Button onClick={cancelDelete}>Cancel</Button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
