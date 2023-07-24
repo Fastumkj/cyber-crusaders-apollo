@@ -16,14 +16,14 @@
 
 .wrapper {
   position: absolute;
-  top: 180px;
+  top: 100px;
 }
 
 .filter {
   margin-bottom: 10px;
-  margin-top: -30px;
-  margin-left: 30px;
-  margin-right: 3px;
+  margin-top: 6px;
+  margin-left: auto;
+  margin-left: 100px;
 }
 
 .product-container {
@@ -38,7 +38,6 @@
 
 .filterlist {
   display: flex;
-  justify-content: center;
 }
 .product-container img {
   width: 100%;

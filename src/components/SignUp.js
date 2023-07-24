@@ -200,6 +200,7 @@ const SignUp = () => {
                         type="reset"
                         name="reset"
                         value="Reset"
+                        style={{ marginLeft: '10px' }}
                         className="btn btn-secondary"
                         autoComplete="off"
                         onClick={handleReset} 

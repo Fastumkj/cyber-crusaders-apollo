@@ -13,21 +13,21 @@ header {
 
 .navbar-fixed {
   display: flex;
-  height: 25vh;
+  height: 15vh;
   width: 100vw;
   background-image: url(https://media.istockphoto.com/id/1158734314/video/abstract-background.jpg?s=640x640&k=20&c=Yj9WUFCh4frKNkG6H1tvVL0EGz1bnVUkLSPrgVEIRxo=) !important;
 }
 .NavBar-pp {
-  height: 120px;
-  width: 120px;
+  height: 50px;
+  width: 50px;
   object-fit: fill;
   border-radius: 50%;
 }
 
 .navbar-cc {
-  margin-top: 50px;
+  margin-top: 30px;
   margin-right: 400px;
-  font-size: 40px;
+  font-size: 30px;
   text-align: center;
   text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6,
     0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
@@ -38,7 +38,7 @@ header {
 }
 
 .dropdown {
-  margin-top: 40px;
+  margin-top: 10px;
 }
 
 .navbar-profile {
