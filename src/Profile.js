@@ -109,7 +109,7 @@ const Profile = ({ setIsLoggedIn }) => {
         <div className="nav-container-profile">
           <div className="profile-config">
             <div className="profile">
-              <p>Profile</p>
+              <p></p>
               <div
                 className="pbackground"
                 style={{ backgroundImage: `url(${[pbackground]})` }}

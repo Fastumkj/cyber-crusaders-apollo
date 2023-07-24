@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/cyber-crusaders-apollo/static/css/main.4780dd5b.css",
-    "main.js": "/cyber-crusaders-apollo/static/js/main.0192d005.js",
+    "main.css": "/cyber-crusaders-apollo/static/css/main.185cfd08.css",
+    "main.js": "/cyber-crusaders-apollo/static/js/main.e89b9836.js",
     "static/media/formbackground.jpg": "/cyber-crusaders-apollo/static/media/formbackground.f8b5d52f7916d45dcf99.jpg",
     "static/media/profilebackground.jpg": "/cyber-crusaders-apollo/static/media/profilebackground.7f932a294ebaf08163e2.jpg",
     "static/media/icon.jpg": "/cyber-crusaders-apollo/static/media/icon.fb109b12ae7bba63e858.jpg",
     "static/media/joystick.jpg": "/cyber-crusaders-apollo/static/media/joystick.3bfbc1f7b4d7eee17e14.jpg",
     "index.html": "/cyber-crusaders-apollo/index.html",
-    "main.4780dd5b.css.map": "/cyber-crusaders-apollo/static/css/main.4780dd5b.css.map",
-    "main.0192d005.js.map": "/cyber-crusaders-apollo/static/js/main.0192d005.js.map"
+    "main.185cfd08.css.map": "/cyber-crusaders-apollo/static/css/main.185cfd08.css.map",
+    "main.e89b9836.js.map": "/cyber-crusaders-apollo/static/js/main.e89b9836.js.map"
   },
   "entrypoints": [
-    "static/css/main.4780dd5b.css",
-    "static/js/main.0192d005.js"
+    "static/css/main.185cfd08.css",
+    "static/js/main.e89b9836.js"
   ]
 }
