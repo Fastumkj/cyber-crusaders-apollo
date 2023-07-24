@@ -112,7 +112,7 @@ const Profile = ({ setIsLoggedIn }) => {
               <p></p>
               <div
                 className="pbackground"
-                style={{ backgroundImage: `url(${[pbackground]})` }}
+                style={{  backgroundImage: `url(${[pbackground]})` }}
               ></div>
               <img src={photoURL} alt="profile pic" className="profile-pic" />
               <img
