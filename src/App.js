@@ -9,7 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "./utils/firebase";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, doc, setDoc } from "firebase/firestore";
 import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
 import { Autocomplete, TextField, InputAdornment } from "@mui/material";
@@ -32,7 +32,10 @@ const App = ({ setIsLoggedIn }) => {
 
   const navigate = useNavigate();
 
-  const handleEmailSubscription = (e) => {
+  const handleEmailSubscription = async (e) => {
+    await setDoc(doc(db, "subscribe", auth.currentUser.uid), {
+      isSubscribed: true,
+    });
     e.preventDefault();
     setEmailSubscribed(true);
   };
@@ -55,6 +58,16 @@ const App = ({ setIsLoggedIn }) => {
       snapshot.forEach((doc) => {
         if (doc.id === auth.currentUser.uid) {
           setName(doc.data().name);
+        }
+      });
+    };
+
+    const isSubscribed = async () => {
+      const sub = collection(db, "subscribe");
+      const snapshot = await getDocs(sub);
+      snapshot.forEach((doc) => {
+        if (doc.id === auth.currentUser.uid) {
+          setEmailSubscribed(true);
         }
       });
     };
@@ -95,6 +108,7 @@ const App = ({ setIsLoggedIn }) => {
     fetchInfo();
     fetchProfilePic();
     fetchUserName();
+    isSubscribed();
   }, []);
 
   useEffect(() => {
