@@ -11,7 +11,7 @@ import WishListCard from "./WishListCard";
 import NavBar from "./NavBar.js";
 import { useNavigate } from "react-router-dom";
 
-const Profile = ({ setIsLoggedIn }) => {
+const Profile = () => {
   const [list, setList] = useState([]);
   const [editingName, setEditingName] = useState(false);
   const [newName, setNewName] = useState("");
@@ -100,11 +100,7 @@ const Profile = ({ setIsLoggedIn }) => {
 
   return (
     <>
-      <NavBar
-        setIsLoggedIn={setIsLoggedIn}
-        photoURL={photoURL}
-        newName={name}
-      />
+      <NavBar photoURL={photoURL} newName={name} />
       <div className="profilePage">
         <div className="nav-container-profile">
           <div className="profile-config">
@@ -112,7 +108,7 @@ const Profile = ({ setIsLoggedIn }) => {
               <p></p>
               <div
                 className="pbackground"
-                style={{  backgroundImage: `url(${[pbackground]})` }}
+                style={{ backgroundImage: `url(${[pbackground]})` }}
               ></div>
               <img src={photoURL} alt="profile pic" className="profile-pic" />
               <img

@@ -21,7 +21,7 @@ import Comments from "./Comments";
 import NavBar from "./NavBar.js";
 import { Button } from "react-bootstrap";
 
-const Game = ({ setIsLoggedIn }) => {
+const Game = () => {
   const location = useLocation();
   const gameDetails = location.state?.gameDetails;
   const [name, setName] = useState("Guest");
@@ -220,7 +220,7 @@ const Game = ({ setIsLoggedIn }) => {
 
   return (
     <>
-      <NavBar setIsLoggedIn={setIsLoggedIn}></NavBar>
+      <NavBar></NavBar>
 
       <div className="game">
         <div className="gameBackground"></div>

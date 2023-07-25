@@ -6,7 +6,7 @@ import "./styles/NavBar.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useNavigate, Link } from "react-router-dom";
 
-const NavBar = ({ setIsLoggedIn, photoURL, newName }) => {
+const NavBar = ({ photoURL, newName }) => {
   const [name, setName] = useState(newName || "guest");
   const [photo, setPhoto] = useState(
     photoURL ||
@@ -59,8 +59,8 @@ const NavBar = ({ setIsLoggedIn, photoURL, newName }) => {
 
   const handleLogout = () => {
     auth.signOut();
-    setIsLoggedIn(false);
-    navigate("/home");
+    localStorage.removeItem("isLoggedIn");
+    navigate("/login");
   };
 
   return (

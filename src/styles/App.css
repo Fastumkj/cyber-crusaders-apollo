@@ -66,6 +66,10 @@
   margin-left: 33vw;
 }
 
+.empty {
+  height: 28.2vh;
+}
+
 .footer-profile {
   height: 200px;
   width: 200px;

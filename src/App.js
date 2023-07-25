@@ -15,7 +15,7 @@ import Button from "react-bootstrap/Button";
 import { Autocomplete, TextField, InputAdornment } from "@mui/material";
 import icon from "./assets/icon.jpg";
 
-const App = ({ setIsLoggedIn }) => {
+const App = () => {
   const [gameList, setGameList] = useState([]);
   const [currentPage, setCurrent] = useState(1);
   const [original, setOriginal] = useState([]);
@@ -192,7 +192,7 @@ const App = ({ setIsLoggedIn }) => {
 
   return (
     <>
-      <NavBar gameList={gameList} setIsLoggedIn={setIsLoggedIn}></NavBar>
+      <NavBar gameList={gameList}></NavBar>
       <div className="wrapper">
         <div className="filterlist">
           <Dropdown>

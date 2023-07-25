@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import LoginForm from "./components/LoginForm";
 import SignUp from "./components/SignUp";
@@ -7,40 +7,29 @@ import Game from "./Game";
 import Profile from "./Profile";
 
 const Navigation = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   const handleLogin = () => {
     // Perform login logic and set isLoggedIn to true upon successful login
-    setIsLoggedIn(true);
+    localStorage.setItem("isLoggedIn", true.toString());
   };
 
   return (
     <Routes>
-      <Route
-        path="/login"
-        element={<LoginForm onLogin={handleLogin} isLoggedIn={isLoggedIn} />}
-      />
+      <Route path="/login" element={<LoginForm onLogin={handleLogin} />} />
       <Route path="/signup" element={<SignUp />} />
       <Route
         path="/home"
         element={
-          isLoggedIn ? (
+          localStorage.getItem("isLoggedIn") ? (
             <>
-              <App setIsLoggedIn={setIsLoggedIn} />
+              <App />
             </>
           ) : (
             <Navigate to="/login" />
           )
         }
       />
-      <Route
-        path="/Profile"
-        element={<Profile setIsLoggedIn={setIsLoggedIn} />}
-      ></Route>
-      <Route
-        path="/Game/:id"
-        element={<Game from="/App" setIsLoggedIn={setIsLoggedIn} />}
-      />
+      <Route path="/Profile" element={<Profile />}></Route>
+      <Route path="/Game/:id" element={<Game from="/App" />} />
       <Route path="/*" element={<Navigate to="/login" />} />{" "}
       {/* Add this route */}
     </Routes>
