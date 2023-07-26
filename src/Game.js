@@ -37,75 +37,80 @@ const Game = () => {
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
   useEffect(() => {
-    const fetchProfilePic = async () => {
-      const storage = getStorage();
-      const pic = ref(storage, "images/" + auth.currentUser.uid);
-      try {
-        const url = await getDownloadURL(pic);
-        setPhotoURL(url);
-      } catch (error) {
-        console.log("No profile pic found");
-      }
-    };
+    const unsub = auth.onAuthStateChanged((authObj) => {
+      unsub();
+      if (authObj) {
+        const fetchProfilePic = async () => {
+          const storage = getStorage();
+          const pic = ref(storage, "images/" + auth.currentUser.uid);
+          try {
+            const url = await getDownloadURL(pic);
+            setPhotoURL(url);
+          } catch (error) {
+            console.log("No profile pic found");
+          }
+        };
 
-    const fetchUserName = async () => {
-      const username = collection(db, "user");
-      const snapshot = await getDocs(username);
-      snapshot.forEach((doc) => {
-        if (doc.id === auth.currentUser.uid) {
-          setName(doc.data().name);
-        }
-      });
-    };
+        const fetchUserName = async () => {
+          const username = collection(db, "user");
+          const snapshot = await getDocs(username);
+          snapshot.forEach((doc) => {
+            if (doc.id === auth.currentUser.uid) {
+              setName(doc.data().name);
+            }
+          });
+        };
 
-    const fetchComments = async () => {
-      const commentRef = query(
-        collection(db, gameDetails.id.toString()),
-        orderBy("index")
-      );
-      if (commentRef) {
-        const snapshot = await getDocs(commentRef);
-        let list = [];
-        snapshot.forEach((doc) => {
-          var comment = doc.data();
-          list.push(
-            new CommentData(
-              comment.index,
-              comment.comment,
-              comment.name,
-              comment.photo,
-              comment.id
-            )
+        const fetchComments = async () => {
+          const commentRef = query(
+            collection(db, gameDetails.id.toString()),
+            orderBy("index")
           );
-        });
-        console.log(list);
-        list.sort((a, b) => a.index - b.index);
-        setComments(list);
-        console.log(list);
+          if (commentRef) {
+            const snapshot = await getDocs(commentRef);
+            let list = [];
+            snapshot.forEach((doc) => {
+              var comment = doc.data();
+              list.push(
+                new CommentData(
+                  comment.index,
+                  comment.comment,
+                  comment.name,
+                  comment.photo,
+                  comment.id
+                )
+              );
+            });
+            console.log(list);
+            list.sort((a, b) => a.index - b.index);
+            setComments(list);
+            console.log(list);
+          }
+        };
+
+        const checkWishlist = async () => {
+          const currentUser = auth.currentUser.uid;
+
+          var dbRef = collection(db, currentUser);
+          const gameQuery = query(
+            dbRef,
+            where("gameDetails.id", "==", gameDetails.id)
+          );
+
+          const querySnapshot = await getDocs(gameQuery);
+          if (!querySnapshot.empty) {
+            setIsInWishList(true);
+          }
+        };
+
+        fetchProfilePic();
+        fetchUserName();
+        fetchComments();
+        checkWishlist();
+        setLoading(false);
       }
-    };
-
-    const checkWishlist = async () => {
-      const currentUser = auth.currentUser.uid;
-
-      var dbRef = collection(db, currentUser);
-      const gameQuery = query(
-        dbRef,
-        where("gameDetails.id", "==", gameDetails.id)
-      );
-
-      const querySnapshot = await getDocs(gameQuery);
-      if (!querySnapshot.empty) {
-        setIsInWishList(true);
-      }
-    };
-
-    fetchProfilePic();
-    fetchUserName();
-    fetchComments();
-    checkWishlist();
-    setLoading(false);
-  }, []);
+    }, []);
+  });
 
   let current = comments.length;
 

@@ -11,7 +11,7 @@ import WishListCard from "./WishListCard";
 import NavBar from "./NavBar.js";
 import { useNavigate } from "react-router-dom";
 
-const Profile = () => {
+const Profile = ({ setIsLoggedIn }) => {
   const [list, setList] = useState([]);
   const [editingName, setEditingName] = useState(false);
   const [newName, setNewName] = useState("");
@@ -24,35 +24,40 @@ const Profile = () => {
   let navigate = useNavigate();
 
   useEffect(() => {
-    const storage = getStorage();
-    const pic = ref(storage, "images/" + auth.currentUser.uid);
-    if (pic) {
-      getDownloadURL(pic)
-        .then((url) => setPhotoURL(url))
-        .catch((error) => {
-          console.log("No profile pic found");
-        });
-    }
-    const username = collection(db, "user");
-    onSnapshot(username, (names) => {
-      names.forEach((doc) => {
-        if (doc.id === auth.currentUser.uid) {
-          setName(doc.data().name);
+    const unsub = auth.onAuthStateChanged((authObj) => {
+      unsub();
+      if (authObj) {
+        const storage = getStorage();
+        const pic = ref(storage, "images/" + auth.currentUser.uid);
+        if (pic) {
+          getDownloadURL(pic)
+            .then((url) => setPhotoURL(url))
+            .catch((error) => {
+              console.log("No profile pic found");
+            });
         }
-      });
-    });
-    const dbRef = collection(db, auth.currentUser.uid);
-    const unsubscribe = onSnapshot(dbRef, (snapshot) => {
-      const documents = [];
-      snapshot.forEach((doc) => {
-        documents.push(doc.data());
-      });
-      setList(documents);
-    });
-    return () => {
-      unsubscribe();
-    };
-  }, []);
+        const username = collection(db, "user");
+        onSnapshot(username, (names) => {
+          names.forEach((doc) => {
+            if (doc.id === auth.currentUser.uid) {
+              setName(doc.data().name);
+            }
+          });
+        });
+        const dbRef = collection(db, auth.currentUser.uid);
+        const unsubscribe = onSnapshot(dbRef, (snapshot) => {
+          const documents = [];
+          snapshot.forEach((doc) => {
+            documents.push(doc.data());
+          });
+          setList(documents);
+        });
+        return () => {
+          unsubscribe();
+        };
+      }
+    }, []);
+  });
 
   const upload = async () => {
     const file = inputRef.current.files[0];
@@ -100,7 +105,11 @@ const Profile = () => {
 
   return (
     <>
-      <NavBar photoURL={photoURL} newName={name} />
+      <NavBar
+        setIsLoggedIn={setIsLoggedIn}
+        photoURL={photoURL}
+        newName={name}
+      />
       <div className="profilePage">
         <div className="nav-container-profile">
           <div className="profile-config">

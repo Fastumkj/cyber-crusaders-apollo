@@ -41,27 +41,6 @@ const App = () => {
   };
 
   useEffect(() => {
-    const fetchProfilePic = async () => {
-      const storage = getStorage();
-      const pic = ref(storage, "images/" + auth.currentUser.uid);
-      try {
-        const url = await getDownloadURL(pic);
-        setPhoto(url);
-      } catch (error) {
-        console.log("No profile pic found");
-      }
-    };
-
-    const fetchUserName = async () => {
-      const username = collection(db, "user");
-      const snapshot = await getDocs(username);
-      snapshot.forEach((doc) => {
-        if (doc.id === auth.currentUser.uid) {
-          setName(doc.data().name);
-        }
-      });
-    };
-
     const isSubscribed = async () => {
       const sub = collection(db, "subscribe");
       const snapshot = await getDocs(sub);
@@ -105,10 +84,16 @@ const App = () => {
       }
     };
 
-    fetchInfo();
-    fetchProfilePic();
-    fetchUserName();
-    isSubscribed();
+    const unsub = auth.onAuthStateChanged((authObj) => {
+      if (authObj) {
+        console.log(authObj);
+        fetchInfo();
+        isSubscribed();
+      }
+    });
+    return () => {
+      unsub();
+    };
   }, []);
 
   useEffect(() => {

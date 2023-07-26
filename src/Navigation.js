@@ -8,7 +8,6 @@ import Profile from "./Profile";
 
 const Navigation = () => {
   const handleLogin = () => {
-    // Perform login logic and set isLoggedIn to true upon successful login
     localStorage.setItem("isLoggedIn", true.toString());
   };
 

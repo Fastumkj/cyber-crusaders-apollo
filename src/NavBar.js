@@ -16,34 +16,37 @@ const NavBar = ({ photoURL, newName }) => {
   let navigate = useNavigate();
 
   useEffect(() => {
-    if (auth.currentUser) {
-      const fetchProfilePic = async () => {
-        const storage = getStorage();
-        const pic = ref(storage, "images/" + auth.currentUser.uid);
-        try {
-          const url = await getDownloadURL(pic);
-          setPhoto(url);
-        } catch (error) {
-          console.log("No profile pic found");
-        }
-      };
-
-      const fetchUserName = async () => {
-        const username = collection(db, "user");
-        const snapshot = await getDocs(username);
-        snapshot.forEach((doc) => {
-          if (doc.id === auth.currentUser.uid) {
-            setName(doc.data().name);
-          }
-        });
-      };
-      if (photoURL) {
-        setPhoto(photoURL);
-      } else {
-        fetchProfilePic();
+    const fetchProfilePic = async () => {
+      const storage = getStorage();
+      const pic = ref(storage, "images/" + auth.currentUser.uid);
+      try {
+        const url = await getDownloadURL(pic);
+        setPhoto(url);
+      } catch (error) {
+        console.log("No profile pic found");
       }
-      fetchUserName();
-    }
+    };
+
+    const fetchUserName = async () => {
+      const username = collection(db, "user");
+      const snapshot = await getDocs(username);
+      snapshot.forEach((doc) => {
+        if (doc.id === auth.currentUser.uid) {
+          setName(doc.data().name);
+        }
+      });
+    };
+    const unsub = auth.onAuthStateChanged((authObj) => {
+      if (authObj) {
+        fetchProfilePic();
+        fetchUserName();
+      }
+    });
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      unsub();
+    };
   }, []);
 
   useEffect(() => {
@@ -67,7 +70,7 @@ const NavBar = ({ photoURL, newName }) => {
     <div className="navbar">
       <header className="navbar-fixed">
         <div className="navbar-logo">
-          <Link to="./home" className="navbar-cc">
+          <Link to="/home" className="navbar-cc">
             CyberCrusaders
           </Link>
         </div>
