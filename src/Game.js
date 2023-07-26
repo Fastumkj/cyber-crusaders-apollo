@@ -225,7 +225,7 @@ const Game = () => {
 
   return (
     <>
-      <NavBar></NavBar>
+      <NavBar className="gameNav"></NavBar>
 
       <div className="game">
         <div className="gameBackground"></div>
