@@ -188,8 +188,9 @@ const SignUp = () => {
                         )}
                     </div>
 
-                  <div className="pt-1 mb-4">
+                  <div className="pt-1 mb-2">
                   <input
+                        id="submitbutton"
                         type="submit"
                         name="submit"
                         value="Submit"
@@ -197,6 +198,7 @@ const SignUp = () => {
                         autoComplete="off"
                     />
                     <input
+                        id="resetbutton"
                         type="reset"
                         name="reset"
                         value="Reset"

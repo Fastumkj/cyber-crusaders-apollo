@@ -134,6 +134,7 @@ const Profile = ({ setIsLoggedIn }) => {
                 accept="image/*"
                 style={{ display: "none" }}
               />
+              
               <div className="profilepage-name">
                 {editingName ? (
                   <>
