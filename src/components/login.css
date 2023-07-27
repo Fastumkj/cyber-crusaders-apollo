@@ -226,125 +226,145 @@
 
 .stars {
   --size: 32px;
-  --duration: 800ms;
+  --duration: 3s;
+  --twinkle-delay: 1s;
   height: calc(var(--size) * 2);
   width: calc(var(--size) * 3);
   position: relative;
   transform-style: preserve-3d;
   transform-origin: 50% 50%;
   margin-top: calc(var(--size) * 1.5 * -1);
-  transform: rotateX(60deg) rotateZ(45deg) rotateY(0deg) translateZ(0px);
 }
 
 .stars .star {
-  width: var(--size);
-  height: var(--size);
-  top: 0;
-  left: 0;
+  --starSize: calc(var(--size) * 0.6);
+  width: 0;
+  height: 0;
   position: absolute;
+  top: 50%;
+  left: 50%;
   transform-style: preserve-3d;
+  animation: twinkleStars var(--duration) linear infinite;
 }
 
 .stars .star:nth-child(1) {
-  transform: translate(100%, 0);
-  animation: star1 var(--duration) linear infinite;
+  transform: translate(100%, 0) rotate(0deg);
+  animation: rotateStars1 var(--duration) linear infinite;
 }
 
 .stars .star:nth-child(2) {
-  transform: translate(0, 100%);
-  animation: star2 var(--duration) linear infinite;
+  transform: translate(0, 100%) rotate(0deg);
+  animation: rotateStars2 var(--duration) linear infinite;
 }
 
 .stars .star:nth-child(3) {
-  transform: translate(100%, 100%);
-  animation: star3 var(--duration) linear infinite;
+  transform: translate(100%, 100%) rotate(0deg);
+  animation: rotateStars3 var(--duration) linear infinite;
 }
 
 .stars .star:nth-child(4) {
-  transform: translate(200%, 0);
-  animation: star4 var(--duration) linear infinite;
+  transform: translate(200%, 0) rotate(0deg);
+  animation: rotateStars4 var(--duration) linear infinite;
 }
 
-.stars .star > div {
-  --background: #5C8DF6;
-  --top: auto;
-  --right: auto;
-  --bottom: auto;
-  --left: auto;
-  --translateZ: calc(var(--size) / 2);
-  --rotateY: 0deg;
-  --rotateX: 0deg;
+.stars .star:before {
+  content: "";
+  width: var(--starSize);
+  height: var(--starSize);
   position: absolute;
-  width: 100%;
-  height: 100%;
-  background: var(--background);
-  top: var(--top);
-  right: var(--right);
-  bottom: var(--bottom);
-  left: var(--left);
-  transform: rotateY(var(--rotateY)) rotateX(var(--rotateX)) translateZ(var(--translateZ));
+  top: -calc(var(--starSize) / 2);
+  left: -calc(var(--starSize) / 2);
+  background: var(--background, #5C8DF6);
+  clip-path: polygon(50% 0%, 61.8% 38.2%, 100% 35.4%, 69.1% 61.8%, 79.2% 100%, 50% 77.3%, 20.8% 100%, 30.9% 61.8%, 0% 35.4%, 38.2% 38.2%);
 }
 
-.stars .star > div:nth-child(1) {
-  --top: 0;
-  --left: 0;
-}
-
-.stars .star > div:nth-child(2) {
-  --background: #145af2;
-  --right: 0;
-  --rotateY: 90deg;
-}
-
-.stars .star > div:nth-child(3) {
-  --background: #447cf5;
-  --rotateX: -90deg;
-}
-
-@keyframes star1 {
-  0%, 50% {
-    transform: translate(100%, 0);
+@keyframes rotateStars1 {
+  from {
+    transform: translate(100%, 0) rotate(0deg);
   }
-
-  100% {
-    transform: translate(200%, 0);
+  to {
+    transform: translate(100%, 0) rotate(360deg);
   }
 }
 
-@keyframes star2 {
-  0% {
-    transform: translate(0, 100%);
+@keyframes rotateStars2 {
+  from {
+    transform: translate(0, 100%) rotate(0deg);
   }
+  to {
+    transform: translate(0, 100%) rotate(360deg);
+  }
+}
 
+@keyframes rotateStars3 {
+  from {
+    transform: translate(100%, 100%) rotate(0deg);
+  }
+  to {
+    transform: translate(100%, 100%) rotate(360deg);
+  }
+}
+
+@keyframes rotateStars4 {
+  from {
+    transform: translate(200%, 0) rotate(0deg);
+  }
+  to {
+    transform: translate(200%, 0) rotate(360deg);
+  }
+}
+
+@keyframes twinkleStars {
+  0%, 100% {
+    opacity: 1;
+  }
   50% {
-    transform: translate(0, 0);
-  }
-
-  100% {
-    transform: translate(100%, 0);
+    opacity: 0.5;
   }
 }
 
-@keyframes star3 {
-  0%, 50% {
-    transform: translate(100%, 100%);
-  }
+/* You can customize the colors and sizes of the stars here */
+.stars .star:nth-child(1):before {
+  --background: #FFD700; /* Gold */
+  --starSize: calc(var(--size) * 0.7);
+}
 
-  100% {
-    transform: translate(0, 100%);
+.stars .star:nth-child(2):before {
+  --background: #F0E68C; /* Khaki */
+  --starSize: calc(var(--size) * 0.5);
+}
+
+.stars .star:nth-child(3):before {
+  --background: #FFA07A; /* Light Salmon */
+  --starSize: calc(var(--size) * 0.6);
+}
+
+.stars .star:nth-child(4):before {
+  --background: #fdfdfd; /* Lavender */
+  --starSize: calc(var(--size) * 0.8);
+}
+/* Additional styling for the planet ball */
+.stars .planet {
+  width: calc(var(--size) * 1.5);
+  height: calc(var(--size) * 1.5);
+  background-color: #133088; /* Tomato */
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px rgba(8, 0, 255, 0.8);
+  animation: planetRotate var(--duration) linear infinite;
+  z-index: -1;
+}
+
+@keyframes planetRotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 
-@keyframes star4 {
-  0% {
-    transform: translate(200%, 0);
-  }
 
-  50% {
-    transform: translate(200%, 100%);
-  }
-
-  100% {
-    transform: translate(100%, 100%);
-  }
-}

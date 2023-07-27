@@ -92,15 +92,28 @@ const SignUp = () => {
           <div className="row justify-content-end">
             <div className="col-sm-6 text-black" >
               <div className="px-5 ms-xl-4">
-                <i
-                  className="fas fa-space-shuttle fa-2x me-3 pt-5 mt-xl-4"
-                  style={{
-                    background: 'linear-gradient(90deg, #0000ff, #ffffff)', // Strong blue and white gradient background
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    marginLeft: '-50px',
-                  }}
-                ></i>
+              <div class="stars me-3 pt-5 mt-xl-4" style={{ marginLeft: "-2%"}}>
+                <div class="star">
+                  <div class="planet"></div>
+                  <div></div>
+                  <div></div>
+                </div>
+                <div class="star">
+                  <div class="planet"></div>
+                  <div></div>
+                  <div></div>
+                </div>
+                <div class="star">
+                  <div class="planet"></div>
+                  <div></div>
+                  <div></div>
+                </div>
+                <div class="star">
+                  <div class="planet"></div>
+                  <div></div>
+                  <div></div>
+                </div>
+              </div>
                 <span 
                   className="h1 fw-bold mb-0 ml-2"
                   style={{

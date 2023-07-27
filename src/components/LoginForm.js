@@ -129,30 +129,30 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
           <div className="row">
             <div className="col-sm-6 text-black">
               <div className="px-5 ms-xl-4">
-              <div class="stars me-3 pt-5 mt-xl-4">
-                <div class="star">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div class="star">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div class="star">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div class="star">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
+              <div class="stars me-3 pt-5 mt-xl-4" style={{ marginLeft: "-2%"}}>
+              <div class="star">
+                <div class="planet"></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div class="star">
+                <div class="planet"></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div class="star">
+                <div class="planet"></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div class="star">
+                <div class="planet"></div>
+                <div></div>
+                <div></div>
+              </div>
             </div>
                 <span
-                  className="h1 fw-bold mb-0 ml-2"
+                  className="h1 fw-bold mb-0 ml--2"
                   style={{
                     fontFamily: "Orbitron, sans-serif",
                     color: "#003eff", // Purple color for the text
