@@ -11,7 +11,7 @@ const Navigation = () => {
     console.log(localStorage.getItem("isLoggedIn"));
     localStorage.setItem("isLoggedIn", true.toString());
   };
-
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   return (
     <Routes>
       <Route path="/login" element={<LoginForm onLogin={handleLogin} />} />
@@ -19,7 +19,7 @@ const Navigation = () => {
       <Route
         path="/home"
         element={
-          localStorage.getItem("isLoggedIn") ? (
+          isLoggedIn ? (
             <>
               <App />
             </>
