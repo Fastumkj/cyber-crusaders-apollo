@@ -55,6 +55,10 @@ const App = () => {
       var myHeaders = new Headers();
       myHeaders.append("x-api-key", "e0kFMFio5QaHanAseqBII1Shr66hKS9n7uDXJHvh");
       myHeaders.append("Content-Type", "text/plain");
+        /*myHeaders.append("x-api-key", "e0kFMFio5QaHanAseqBII1Shr66hKS9n7uDXJHvh");
+        myHeaders.append("Authorization", "Bearer YOUR_APP_ACCESS_TOKEN"); // Replace YOUR_APP_ACCESS_TOKEN with your actual app access token
+        myHeaders.append("Client-ID", "YOUR_CLIENT_ID"); // Replace YOUR_CLIENT_ID with your actual client ID
+        myHeaders.append("Content-Type", "text/plain");*/
 
       const currentDate = Math.floor(Date.now() / 1000);
 
@@ -77,6 +81,7 @@ const App = () => {
           requestOptions
         );
         const responseJson = await response.json();
+        console.log("responsejson:", JSON.stringify(responseJson));
         setGameList(responseJson);
         setOriginal(responseJson);
       } catch (error) {
@@ -133,6 +138,7 @@ const App = () => {
       });
     }
     setOriginal(filteredGames);
+    console.log('original: ' + original);
   }, [gameList, genres, platforms]);
 
   const displayPhoto = (photo) => {
@@ -173,7 +179,9 @@ const App = () => {
 
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-  const currentRecords = original.slice(indexOfFirstRecord, indexOfLastRecord);
+  const currentRecords = Array.isArray(original) // Check if original is an array
+  ? original.slice(indexOfFirstRecord, indexOfLastRecord)
+  : []; 
 
   return (
     <>
