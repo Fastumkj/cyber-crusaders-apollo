@@ -24,7 +24,7 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
   const [recaptchaVerified, setRecaptchaVerified] = useState(false);
   const recaptchaRef = React.createRef();
   const [catchline, setCatchline] = useState("");
-  const [isLoggingIn, setIsLoggingIn] = useState(false); 
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [loginAttempts, setLoginAttempts] = useState(1);
 
   useEffect(() => {
@@ -75,9 +75,11 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
       if (remainingAttempts > 0) {
         alert(`Invalid credentials! ${remainingAttempts} attempts left.`);
       } else {
-        alert("Too many failed login attemps. Your account is temporarily locked. Try again in 1 hour.")
-      } 
-    } 
+        alert(
+          "Too many failed login attemps. Your account is temporarily locked. Try again in 1 hour."
+        );
+      }
+    }
   };
 
   if (isLoggedIn) {

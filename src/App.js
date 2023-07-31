@@ -53,7 +53,7 @@ const App = () => {
 
     const fetchInfo = async () => {
       var myHeaders = new Headers();
-      myHeaders.append("x-api-key", "e0kFMFio5QaHanAseqBII1Shr66hKS9n7uDXJHvh");
+      myHeaders.append("x-api-key", "TTsCAiEC7l35cc721l22YhlscJjS5ox9US06A8Y3");
       myHeaders.append("Content-Type", "text/plain");
 
       const currentDate = Math.floor(Date.now() / 1000);
@@ -73,7 +73,7 @@ const App = () => {
 
       try {
         const response = await fetch(
-          "https://yzyuo634g3.execute-api.us-west-2.amazonaws.com/production/v4/games",
+          "https://nhscr79mhh.execute-api.us-west-2.amazonaws.com/production/v4/games",
           requestOptions
         );
         const responseJson = await response.json();
