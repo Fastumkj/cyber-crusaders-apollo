@@ -8,6 +8,7 @@ import { auth } from "../utils/firebase.js";
 import ReCAPTCHA from "react-google-recaptcha";
 import formbackground from "../assets/formbackground.jpg";
 import { color } from "framer-motion";
+import { login } from "./login.css";
 
 const catchlines = [
   "Welcome back!",
@@ -130,17 +131,30 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
           <div className="row">
             <div className="col-sm-6 text-black">
               <div className="px-5 ms-xl-4">
-                <i
-                  className="fas fa-space-shuttle fa-2x me-3 pt-5 mt-xl-4"
-                  style={{
-                    background: "linear-gradient(90deg, #0000ff, #ffffff)", // Strong blue and white gradient background
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    marginLeft: "-50px",
-                  }}
-                ></i>
+              <div class="stars me-3 pt-5 mt-xl-4" style={{ marginLeft: "-2%"}}>
+              <div class="star">
+                <div class="planet"></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div class="star">
+                <div class="planet"></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div class="star">
+                <div class="planet"></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div class="star">
+                <div class="planet"></div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
                 <span
-                  className="h1 fw-bold mb-0 ml-2"
+                  className="h1 fw-bold mb-0 ml--2"
                   style={{
                     fontFamily: "Orbitron, sans-serif",
                     color: "#003eff", // Purple color for the text
@@ -243,21 +257,27 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
                   </div>
 
                   <div className="pt-1 mb-4">
-                    <Button
-                      className="btn btn-info btn-lg btn-block"
-                      type="submit"
-                      style={{ backgroundColor: "green", width: "33%" }}
-                      onClick={(e) => {
-                        if (!recaptchaVerified) {
-                          e.preventDefault();
-                          alert(
-                            "Please verify reCaptcha, are you a robot sent by space?"
-                          );
-                        }
-                      }}
-                    >
-                      Login
-                    </Button>
+                    <button
+                    className="btn btn-info btn-lg btn-block"
+                    id="loginbtn"
+                    type="submit"
+                    onClick={(e) => {
+                      if (!recaptchaVerified) {
+                        e.preventDefault();
+                        alert("Please verify reCaptcha, are you a robot sent by space?");
+                      }
+                    }}
+                  >
+                      <strong>Login</strong>
+                      <div id="container-stars">
+                        <div id="stars"></div>
+                      </div>
+
+                      <div id="glow">
+                        <div class="circle"></div>
+                        <div class="circle"></div>
+                      </div>
+                  </button>
                   </div>
                   <p style={{ color: "black" }}>
                     Don't have an account?
