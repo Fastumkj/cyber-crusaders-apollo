@@ -8,8 +8,8 @@ import Profile from "./Profile";
 
 const Navigation = () => {
   const handleLogin = () => {
-    console.log(localStorage.getItem("isLoggedIn"));
     localStorage.setItem("isLoggedIn", true.toString());
+    console.log(localStorage.getItem("isLoggedIn"));
   };
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   return (
