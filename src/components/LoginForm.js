@@ -131,28 +131,31 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
           <div className="row">
             <div className="col-sm-6 text-black">
               <div className="px-5 ms-xl-4">
-              <div class="stars me-3 pt-5 mt-xl-4" style={{ marginLeft: "-2%"}}>
-              <div class="star">
-                <div class="planet"></div>
-                <div></div>
-                <div></div>
-              </div>
-              <div class="star">
-                <div class="planet"></div>
-                <div></div>
-                <div></div>
-              </div>
-              <div class="star">
-                <div class="planet"></div>
-                <div></div>
-                <div></div>
-              </div>
-              <div class="star">
-                <div class="planet"></div>
-                <div></div>
-                <div></div>
-              </div>
-            </div>
+                <div
+                  class="stars me-3 pt-5 mt-xl-4"
+                  style={{ marginLeft: "-2%" }}
+                >
+                  <div class="star">
+                    <div class="planet"></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+                  <div class="star">
+                    <div class="planet"></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+                  <div class="star">
+                    <div class="planet"></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+                  <div class="star">
+                    <div class="planet"></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+                </div>
                 <span
                   className="h1 fw-bold mb-0 ml--2"
                   style={{
@@ -258,16 +261,18 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
 
                   <div className="pt-1 mb-4">
                     <button
-                    className="btn btn-info btn-lg btn-block"
-                    id="loginbtn"
-                    type="submit"
-                    onClick={(e) => {
-                      if (!recaptchaVerified) {
-                        e.preventDefault();
-                        alert("Please verify reCaptcha, are you a robot sent by space?");
-                      }
-                    }}
-                  >
+                      className="btn btn-info btn-lg btn-block"
+                      id="loginbtn"
+                      type="submit"
+                      onClick={(e) => {
+                        if (!recaptchaVerified) {
+                          e.preventDefault();
+                          alert(
+                            "Please verify reCaptcha, are you a robot sent by space?"
+                          );
+                        }
+                      }}
+                    >
                       <strong>Login</strong>
                       <div id="container-stars">
                         <div id="stars"></div>
@@ -277,7 +282,7 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
                         <div class="circle"></div>
                         <div class="circle"></div>
                       </div>
-                  </button>
+                    </button>
                   </div>
                   <p style={{ color: "black" }}>
                     Don't have an account?

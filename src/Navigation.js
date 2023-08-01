@@ -7,9 +7,9 @@ import Game from "./Game";
 import Profile from "./Profile";
 
 const Navigation = () => {
-  const handleLogin = () => {
+  const handleLogin = async () => {
+    await localStorage.setItem("isLoggedIn", true.toString());
     console.log(localStorage.getItem("isLoggedIn"));
-    localStorage.setItem("isLoggedIn", true.toString());
   };
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   return (
