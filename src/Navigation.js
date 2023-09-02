@@ -30,7 +30,7 @@ const Navigation = () => {
       />
       <Route path="/Profile" element={<Profile />}></Route>
       <Route path="/Game/:id" element={<Game from="/App" />} />
-      <Route path="/*" element={<Navigate to="/login" />} />{" "}
+      <Route path="/*" element={<Navigate to="/login" />} />
       {/* Add this route */}
     </Routes>
   );
