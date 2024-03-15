@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import LoginForm from "./components/LoginForm";
 import SignUp from "./components/SignUp";
 import App from "./App";
@@ -7,11 +7,15 @@ import Game from "./Game";
 import Profile from "./Profile";
 
 const Navigation = () => {
+  const navigate = useNavigate();
+
   const handleLogin = () => {
     localStorage.setItem("isLoggedIn", true.toString());
-    console.log(localStorage.getItem("isLoggedIn"));
+    navigate("/home");
   };
+
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
   return (
     <Routes>
       <Route path="/login" element={<LoginForm onLogin={handleLogin} />} />

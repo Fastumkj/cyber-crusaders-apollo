@@ -67,7 +67,7 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
       console.log("Login successful!");
       alert("Logged in!"); //delete once deployed
       onLogin();
-      navigate("/home");
+      //navigate("/home");
       // Redirect or perform other actions after successful login
     } catch (error) {
       console.log("Login error:", error);
