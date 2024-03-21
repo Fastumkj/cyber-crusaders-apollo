@@ -257,7 +257,7 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
                       className="btn btn-info btn-lg btn-block"
                       id="loginbtn"
                       type="submit"
-                      /*onClick={(e) => {
+                      /* onClick={(e) => {
                         if (!recaptchaVerified) {
                           e.preventDefault();
                           alert(
