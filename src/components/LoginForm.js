@@ -5,7 +5,7 @@ import { validationSchema } from "../utils/validation1.js";
 import { Button } from "react-bootstrap";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../utils/firebase.js";
-import ReCAPTCHA from "react-google-recaptcha";
+//import ReCAPTCHA from "react-google-recaptcha";
 import formbackground from "../assets/formbackground.jpg";
 import { color } from "framer-motion";
 import { login } from "./login.css";
@@ -59,8 +59,6 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
 
   const handleLogin = async (email, password) => {
     try {
-      setLoginAttempts((prevAttempts) => prevAttempts + 1);
-
       // Call Firebase signInWithEmailAndPassword method
       await signInWithEmailAndPassword(auth, email, password);
 
@@ -69,6 +67,7 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
       onLogin();
       //navigate("/home");
       // Redirect or perform other actions after successful login
+      setLoginAttempts((prevAttempts) => prevAttempts + 1);
     } catch (error) {
       console.log("Login error:", error);
 
@@ -251,12 +250,6 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
                   <div
                     style={{ backgroundColor: "transparent", border: "none" }}
                   >
-                    <ReCAPTCHA
-                      ref={recaptchaRef}
-                      sitekey="6LccIrkmAAAAAEYXpCBt4AOitCid97jFauP1cZa0"
-                      onChange={handleRecaptchaVerify}
-                      style={{ display: "inline-block" }}
-                    />
                   </div>
 
                   <div className="pt-1 mb-4">
@@ -264,14 +257,14 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
                       className="btn btn-info btn-lg btn-block"
                       id="loginbtn"
                       type="submit"
-                      onClick={(e) => {
+                      /*onClick={(e) => {
                         if (!recaptchaVerified) {
                           e.preventDefault();
                           alert(
                             "Please verify reCaptcha, are you a robot sent by space?"
                           );
                         }
-                      }}
+                      }}*/
                     >
                       <strong>Login</strong>
                       <div id="container-stars">
