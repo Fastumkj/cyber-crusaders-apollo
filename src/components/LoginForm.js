@@ -271,7 +271,7 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
                             "Please verify reCaptcha, are you a robot sent by space?"
                           );
                         }
-                      }}*/
+                      }}s*/
                     >
                       <strong>Login</strong>
                       <div id="container-stars">
