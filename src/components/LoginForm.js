@@ -22,8 +22,8 @@ const catchlines = [
 const LoginForm = ({ onLogin, isLoggedIn }) => {
   const navigate = useNavigate();
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [recaptchaVerified, setRecaptchaVerified] = useState(false);
-  const recaptchaRef = React.createRef();
+  //const [recaptchaVerified, setRecaptchaVerified] = useState(false);
+  //const recaptchaRef = React.createRef();
   const [catchline, setCatchline] = useState("");
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [loginAttempts, setLoginAttempts] = useState(1);
@@ -59,6 +59,8 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
 
   const handleLogin = async (email, password) => {
     try {
+      setLoginAttempts((prevAttempts) => prevAttempts + 1);
+
       // Call Firebase signInWithEmailAndPassword method
       await signInWithEmailAndPassword(auth, email, password);
 
@@ -67,7 +69,6 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
       onLogin();
       //navigate("/home");
       // Redirect or perform other actions after successful login
-      setLoginAttempts((prevAttempts) => prevAttempts + 1);
     } catch (error) {
       console.log("Login error:", error);
 
@@ -92,10 +93,10 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
   };
 
   // Handle Recaptcha logic
-  const handleRecaptchaVerify = (response) => {
+  /*const handleRecaptchaVerify = (response) => {
     setRecaptchaVerified(true);
     console.log("Recaptcha verified");
-  };
+  };*/
 
   return (
     <section
@@ -247,17 +248,23 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
                   </div>
 
                   {/* ReCAPTCHA */}
-                  <div
+                  { /*<div
                     style={{ backgroundColor: "transparent", border: "none" }}
                   >
-                  </div>
+                    <ReCAPTCHA
+                      ref={recaptchaRef}
+                      sitekey="6LccIrkmAAAAAEYXpCBt4AOitCid97jFauP1cZa0"
+                      onChange={handleRecaptchaVerify}
+                      style={{ display: "inline-block" }}
+                    />
+                      </div>*/}
 
                   <div className="pt-1 mb-4">
                     <button
                       className="btn btn-info btn-lg btn-block"
                       id="loginbtn"
                       type="submit"
-                      /* onClick={(e) => {
+                      /*onClick={(e) => {
                         if (!recaptchaVerified) {
                           e.preventDefault();
                           alert(

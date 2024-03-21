@@ -14,7 +14,7 @@ const Navigation = () => {
     navigate("/home");
   };
 
-  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+  let isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
   return (
     <Routes>
